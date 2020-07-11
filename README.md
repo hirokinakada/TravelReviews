@@ -1,5 +1,4 @@
-# アプリ名
-Travel reviews
+# Travel reviews
 
 
 ## サイト概要
