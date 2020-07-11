@@ -2,9 +2,12 @@ Rails.application.routes.draw do
   devise_for :admins, controllers: {
     sessions: 'admins/sessions'
   }
-  
-  devise_for :customers
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'home#top'
 
+  devise_for :customers
+
+  root 'home#top'
+  get 'home/about'
+  namespace :admins do
+    get 'home' => 'home#top'
+  end
 end
