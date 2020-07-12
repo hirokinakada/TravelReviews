@@ -1,21 +1,18 @@
+
 <header>
-  <div>
-    <p id= "notice" class="notice"><%= notice %></p>
-
-
-
+    <span>ろご</span>
     <nav>
       <ul>
 
         <% if admin_signed_in? %>
-        <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li><!--管理者ナビゲーション-->
+        <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
         <p>観光地　新規リンクを貼る箇所</p>
         <p>ジャンルのようなものを貼る箇所</p>
 
         <% elsif customer_signed_in? %>
         <li><p>ようこそ、<%= current_customer.last_name %><%= current_customer.first_name %>さん！</p></li>
 
-        <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li><!--顧客ナビゲーション -->
+        <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
 
         <li><%= link_to  "About", home_about_path %></li>
         <% else %>
@@ -23,10 +20,7 @@
         <li><%= link_to '新規登録', new_customer_registration_path %></li>
 
         <li><%= link_to 'ログイン', new_customer_session_path %></li>
-        <% end %><!--共通ナビ-->
+        <% end %>
       </ul>
     </nav>
-
-
-  </div>
 </header>
