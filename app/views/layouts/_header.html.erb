@@ -11,17 +11,21 @@
 
         <% elsif customer_signed_in? %>
         <li><p>ようこそ、<%= current_customer.nickname %>さん！</p></li>
+        <li><%= link_to 'まいぺーじ' , customer_path(current_customer.id) %></li>
 
         <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
 
-        <li><%= link_to  "About", home_about_path %></li>
+        <li><%= link_to  'About', home_about_path %></li>
 
-        <li><%= link_to  "掲示板", topics_index_path %></li>
+        <li><%= link_to  '掲示板', topics_index_path %></li>
+
         <% else %>
 
         <li><%= link_to '新規登録', new_customer_registration_path %></li>
 
         <li><%= link_to 'ログイン', new_customer_session_path %></li>
+
+        <li><%= link_to  'About', home_about_path %></li>
         <% end %>
       </ul>
     </nav>

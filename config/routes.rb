@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   get 'home/about'
 
 
+#会員
+resources :customers
+
 #管理者
   namespace :admins do
     get 'home' => 'home#top'
