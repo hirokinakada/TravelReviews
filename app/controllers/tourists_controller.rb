@@ -8,5 +8,8 @@ class TouristsController < ApplicationController
         @tourist = Tourist.find(params[:id])
     end
 
-
+ private
+    def tourist_params
+        params.require(:tourist).permit(:name, :image, :overview)
+    end
 end
