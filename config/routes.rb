@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 #共通
   root 'home#top'
   get 'home/about'
+  resources :tourists
 
 
 #会員
@@ -24,5 +25,6 @@ resources :customers
 #管理者
   namespace :admins do
     get 'home' => 'home#top'
+    resources :tourists
   end
 end

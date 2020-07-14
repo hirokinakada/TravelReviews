@@ -1,0 +1,24 @@
+  <table>
+    <thead>
+      <tr>
+        <th>地名</th>
+        <th>概要</th>
+        <th>image</th>
+        <th>編集</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% tourists.each do |tourist| %>
+        <tr>
+            <td><%= link_to tourist.name, admins_tourist_path(tourist) %></td>
+            <td><%= tourist.overview %></td>
+
+            <td><%= attachment_image_tag(tourist, :image, :fill, 400, 200, fallback: "noimage.jpg") %>
+            </td>
+		<%#あとで管理者だけ表示、　　押したらその地域のスポットがでる感じ%>
+            <td><%= link_to '編集', edit_admins_tourist_path(tourist) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
