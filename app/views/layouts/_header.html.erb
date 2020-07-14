@@ -6,7 +6,7 @@
 
         <% if admin_signed_in? %>
         <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
-        <p>観光地　新規リンクを貼る箇所</p>
+        <p><%= link_to  "観光地域登録", admins_tourists_path %></p>
         <p>ジャンルのようなものを貼る箇所</p>
 
         <% elsif customer_signed_in? %>

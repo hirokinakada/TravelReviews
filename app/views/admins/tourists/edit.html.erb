@@ -1,0 +1,17 @@
+<h1>観光地域変更</h1>
+    <%= form_for (@tourist), url: admins_tourist_path do |f| %>
+
+        <%= f.label :name, "地名" %>
+        <%= f.text_field :name %></br>
+
+        <%= f.label :overview, "概要" %>
+        <%= f.text_field :overview %></br>
+
+        <%= f.label :image, "image" %>
+        <%= f.attachment_field :image %></br>
+
+        <%= f.submit "変更" %>
+    <% end %>
+
+    <%= link_to '[削除]', admins_tourist_path(@tourist.id), method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
+    
