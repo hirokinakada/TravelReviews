@@ -2,6 +2,5 @@
         <P>Travel reviewsにようこそ。</p>
 </div>
 
-<%= render "admins/tourists/touristlist", tourists: @tourists %>
-
-
+<%= render "tourists/touristlist", tourists: @tourists %>
+<%= paginate @tourists, class: "paginate" %>
