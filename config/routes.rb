@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+#後からonlyで制限かける
 #デバイス、会員、管理者
   devise_for :admins, controllers: {
     sessions: 'admins/sessions'
@@ -17,7 +18,7 @@ Rails.application.routes.draw do
   root 'home#top'
   get 'home/about'
   resources :tourists
-
+  resources :spots
 
 #会員
 resources :customers
@@ -26,5 +27,6 @@ resources :customers
   namespace :admins do
     get 'home' => 'home#top'
     resources :tourists
+    resources :spots
   end
 end

@@ -1,0 +1,45 @@
+
+<%= form_for (@spot), url: admins_spots_path do |f| %>
+    <%= f.label :name, "観光地名" %>
+    <%= f.text_field :name %>
+
+    <%= f.label :住所 %>
+    <%= f.text_area :address, autofocus: true %>
+
+    <%= f.label :overview, "概要" %>
+    <%= f.text_area :overview %>
+
+    <%= f.label :image, "画像"%>
+    <%= f.attachment_field :image %>
+
+    <%= f.label :tourist_id, "エリア選択" %>
+    <%= f.collection_select :tourist_id, @tourists, :id, :name, include_blank: "選択してください" %>
+    
+    <%= f.submit "登録" %>
+
+    <% end %>
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>観光地</th>
+        <th>概要</th>
+        <th>image</th>
+        <th>編集</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @spots.each do |spot| %>
+        <tr>
+            <td><%= link_to spot.name, admins_spot_path(spot) %></td>
+            <td><%= spot.overview %></td>
+
+            <td><%= attachment_image_tag(spot, :image, :fill, 400, 200, fallback: "noimage.jpg") %>
+            </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
