@@ -1,0 +1,16 @@
+
+    <p><%= attachment_image_tag(@spot, :image, :fill, 70, 70, fallback: "noimage.jpg") %></p>
+
+    <p><%= @spot.name %></p>
+
+    <p><%= @spot.overview %></p>
+
+    <p><%= @spot.address %>
+
+    <p>登録エリア<%= @spot.tourist.name %></p>
+
+    <p><%= link_to '編集する', edit_admins_spot_path(@spot) %>
+    <%= link_to "削除する", admins_spot_path(@spot), method: :delete, "data-confirm" => 'Are you sure?' %>
+    </p>
+
+

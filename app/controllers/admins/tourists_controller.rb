@@ -7,6 +7,7 @@ class Admins::TouristsController < ApplicationController
 
     def show
         @tourist = Tourist.find(params[:id])
+        @spots = @tourist.spots.where(tourist_id: @tourist.id)
     end
 
 

@@ -6,10 +6,7 @@ class TouristsController < ApplicationController
 
     def show
         @tourist = Tourist.find(params[:id])
+        @spots = @tourist.spots.where(tourist_id: @tourist.id)
     end
 
- private
-    def tourist_params
-        params.require(:tourist).permit(:name, :image, :overview)
-    end
 end
