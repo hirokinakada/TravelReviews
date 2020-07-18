@@ -25,7 +25,12 @@ Rails.application.routes.draw do
   end
 
 #会員
-resources :customers
+  resources :customers do
+    get 'relationships/follows'
+    get 'relationships/followers'
+  end
+  post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
+  post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
 
 #管理者
   namespace :admins do

@@ -44,7 +44,9 @@
     <%= review.body %>
     <%= attachment_image_tag(review, :image, :fill, 70, 70, fallback: "noimage.jpg") %>
     <%= link_to review.customer.nickname, customer_path(review.customer_id) %>
+    <% if customer_signed_in? && review.customer.id == current_customer.id %>
     <%= link_to "Destroy", review_path(review.id), method: :delete %>
+    <% end %>
 
 
 <!--いいね機能について-->
@@ -57,7 +59,7 @@
             $('#star-rate-<%= review.id %>').raty({
             size: 36,
             starOff:  '<%= asset_path('star-off.png') %>',
-            starOn : '<%= asset_path('star-on.png') %>',
+            starOn :  '<%= asset_path('star-on.png') %>',
             starHalf: '<%= asset_path('star-half.png') %>',
             half: true,
             readOnly: true,
@@ -66,3 +68,4 @@
         </script>  
 <!--/星評価-->
     <% end %>
+    

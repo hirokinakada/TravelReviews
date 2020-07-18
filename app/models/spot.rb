@@ -1,4 +1,5 @@
 class Spot < ApplicationRecord
+    default_scope -> { order(created_at: :desc) }#投稿順に
     has_many :reviews, dependent: :destroy
     belongs_to :tourist
     attachment :image, destroy: false
