@@ -8,4 +8,5 @@ class Customer < ApplicationRecord
          has_many :posts, dependent: :destroy
          attachment :image, destroy: false
          has_many :reviews, dependent: :destroy
+         has_many :favorites, dependent: :destroy
 end

@@ -17,10 +17,12 @@ Rails.application.routes.draw do
 #共通
   root 'home#top'
   get 'home/about'
+  get "search" => "search#search"
   resources :tourists
   resources :spots
-  get "search" => "search#search"
-  resources :reviews
+  resources :reviews do
+    resource :favorites, only: [:create, :destroy]
+  end
 
 #会員
 resources :customers
