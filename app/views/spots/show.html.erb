@@ -37,6 +37,8 @@
         <%= f.submit '投稿' %>
     <% end %>
 
+
+<!--ここから口コミ一覧-->
     <% @reviews.each do |review| %>
     <%= review.title %>
     <%= review.body %>
@@ -44,6 +46,11 @@
     <%= link_to review.customer.nickname, customer_path(review.customer_id) %>
     <%= link_to "Destroy", review_path(review.id), method: :delete %>
 
+
+<!--いいね機能について-->
+<p class="review_<%= review.id %>">
+<%= render  "reviews/favo",review:review , customer:current_customer %>
+</p>
 <!--星評価-->
     <div id="star-rate-<%= review.id %>"></div>
         <script>
