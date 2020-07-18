@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :tourists
   resources :spots
   get "search" => "search#search"
+  resources :reviews
 
 #会員
 resources :customers

@@ -7,3 +7,55 @@
     <p><%= @spot.address %>
 
     <p>エリア<%= @spot.tourist.name %></p>
+
+
+<%#ここから、口コミview%>
+    <%= form_for @review do |f| %>
+        <%= f.hidden_field :spot_id, value: @spot.id %>
+        <%= f.hidden_field :customer_id, value: current_customer.id %>
+        <%= f.text_field :title %>
+        <%= f.text_area :body %>
+        <%= f.attachment_field :image %>
+<!-- 評価 -->
+    <div class="form-group row" id="star">
+        <%= f.label :rate,'評価' %>
+        <%= f.hidden_field :rate, id: :review_star %>
+    </div>
+
+<!-- 評価javascript -->
+    <script>
+    $('#star').raty({
+        size     : 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        scoreName: 'review[rate]',
+        half: true,
+    });
+    </script> 
+
+        <%= f.submit '投稿' %>
+    <% end %>
+
+    <% @reviews.each do |review| %>
+    <%= review.title %>
+    <%= review.body %>
+    <%= attachment_image_tag(review, :image, :fill, 70, 70, fallback: "noimage.jpg") %>
+    <%= link_to review.customer.nickname, customer_path(review.customer_id) %>
+    <%= link_to "Destroy", review_path(review.id), method: :delete %>
+
+<!--星評価-->
+    <div id="star-rate-<%= review.id %>"></div>
+        <script>
+            $('#star-rate-<%= review.id %>').raty({
+            size: 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= review.rate %>,
+            });
+        </script>  
+<!--/星評価-->
+    <% end %>
