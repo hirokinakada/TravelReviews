@@ -30,7 +30,7 @@ class Admins::SpotsController < ApplicationController
     def destroy
         @spot = Spot.find(params[:id])
         @spot.destroy
-        redirect_to new_admins_spot_path
+        redirect_to admins_spots_path
     end
 
     private

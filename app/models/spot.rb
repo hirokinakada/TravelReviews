@@ -5,8 +5,7 @@ class Spot < ApplicationRecord
     attachment :image, destroy: false
 
     geocoded_by :address
-    after_validation :geocode, if: :address_changed?
-
+    after_validation :geocode, if: lambda {|obj| obj.address_changed?}
 
 
 def Spot.search(search, tourist_or_spot, how_search)

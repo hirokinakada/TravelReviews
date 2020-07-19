@@ -1,3 +1,4 @@
+<!--spot詳細-->
     <p><%= attachment_image_tag(@spot, :image, :fill, 70, 70, fallback: "noimage.jpg") %></p>
 
     <p><%= @spot.name %></p>
@@ -8,8 +9,49 @@
 
     <p>エリア<%= @spot.tourist.name %></p>
 
+<!--GoogleMap-->
+<div id="map"></div>
 
-<%#ここから、口コミview%>
+<style>
+#map{
+  height: 400px;
+}
+</style>
+
+<script type="text/javascript">
+    function initMap() {
+
+        var test ={lat: <%= @spot.latitude %>, lng: <%= @spot.longitude %>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: test
+        });
+        var transitLayer = new google.maps.TransitLayer();
+        transitLayer.setMap(map);
+
+        var contentString = '住所：<%= @spot.address %>';
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+        var marker = new google.maps.Marker({
+            position:test,
+            map: map,
+            title: contentString
+        });
+
+        marker.addListener('click', function() {
+            infowindow.open(map, marker);
+        });
+    }
+</script>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+</script>
+<!--GoogleMap-->
+
+<%#ここから、口コミ投稿view%>
     <%= form_for @review do |f| %>
         <%= f.hidden_field :spot_id, value: @spot.id %>
         <%= f.hidden_field :customer_id, value: current_customer.id %>
@@ -36,7 +78,7 @@
 
         <%= f.submit '投稿' %>
     <% end %>
-
+<%#ここまで、口コミ投稿view%>
 
 <!--ここから口コミ一覧-->
     <% @reviews.each do |review| %>
