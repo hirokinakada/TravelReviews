@@ -1,4 +1,7 @@
 <h1>観光地域変更</h1>
+
+<%= render 'layouts/errors', obj: @tourist %>
+
     <%= form_for (@tourist), url: admins_tourist_path do |f| %>
 
         <%= f.label :name, "地名" %>

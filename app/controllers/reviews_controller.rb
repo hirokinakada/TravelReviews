@@ -2,8 +2,9 @@ class ReviewsController < ApplicationController
 
     def create
         @review = Review.new(review_params)
-        @review.save
-        redirect_to spot_path(@review.spot)
+        if  @review.save
+            redirect_to spot_path(@review.spot)
+        #ここにelse後から
     end
 
     def destroy
