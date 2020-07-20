@@ -9,7 +9,9 @@ class TopicsController < ApplicationController
     @topic.customer_id = current_customer.id
     @topic.save
     redirect_to topics_index_path
+
   end
+
 
   def delete
     @topic = Topic.find(params[:id])

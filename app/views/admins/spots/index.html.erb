@@ -1,4 +1,6 @@
 
+<%= render 'layouts/errors', obj: @spot %>
+
 <%= form_for (@spot), url: admins_spots_path do |f| %>
     <%= f.label :name, "観光地名" %>
     <%= f.text_field :name %>

@@ -1,6 +1,9 @@
 <h1>Topics#show</h1>
 topic内容<%= @topic.title %>
 topic投稿者<%=@topic.customer.nickname%>
+
+<%#エラー文、後から%>
+
 <% @posts.each_with_index do |post , idx| %>
   <p>
     <%= idx + 1 %>. <%= link_to post.customer.nickname, customer_path(post.customer_id)  %> : <%= post.body %>

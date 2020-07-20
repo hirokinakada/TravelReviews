@@ -1,4 +1,7 @@
 <h1>観光エリア登録</h1>
+
+    <%= render 'layouts/errors', obj: @tourist %>
+
     <%= form_for (@tourist), url: admins_tourists_path do |f| %>
 
         <%= f.label :name, "地名" %>

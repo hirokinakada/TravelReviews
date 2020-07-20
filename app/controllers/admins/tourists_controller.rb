@@ -13,9 +13,13 @@ class Admins::TouristsController < ApplicationController
 
     def create
 		@tourist = Tourist.new(tourist_params)
-		@tourist.save
-		flash[:notice] = "追加しました"
-		redirect_to admins_tourists_path
+		if @tourist.save
+		    flash[:notice] = "追加しました"
+            redirect_to admins_tourists_path
+        else
+            @tourists = Tourist.all
+            render :index
+        end
     end
 
     def edit
@@ -24,9 +28,11 @@ class Admins::TouristsController < ApplicationController
     
     def update
         @tourist = Tourist.find(params[:id])
-        @tourist.update(tourist_params)
-        flash[:notice] = "変更しました"
-        redirect_to admins_tourists_path
+        if  @tourist.update(tourist_params)
+            redirect_to admins_tourists_path
+        else
+            render :edit        
+        end
     end
 
     def destroy

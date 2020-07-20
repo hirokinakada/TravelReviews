@@ -4,6 +4,10 @@ class Tourist < ApplicationRecord
     attachment :image, destroy: false
     has_many :spots, dependent: :destroy
 
+    validates :name, presence: true
+    validates :overview, presence: true
+    
+
     def Tourist.search(search, tourist_or_spot, how_search)
         if how_search == "1"
             Tourist.where(['name LIKE ?', "%#{search}%"])

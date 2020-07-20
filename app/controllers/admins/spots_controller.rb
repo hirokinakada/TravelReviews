@@ -12,8 +12,13 @@ class Admins::SpotsController < ApplicationController
 
     def create
         @spot = Spot.new(spot_params)
-        @spot.save
-        redirect_to admins_spot_path(@spot)
+       if   @spot.save
+            redirect_to admins_spot_path(@spot)
+       else
+        @spots = Spot.all
+        @tourists = Tourist.all
+        render :index
+        end
     end
 
     def edit
@@ -23,8 +28,12 @@ class Admins::SpotsController < ApplicationController
 
     def update
         @spot = Spot.find(params[:id])
-        @spot.update(spot_params)
-        redirect_to admins_spots_path
+        if  @spot.update(spot_params)
+            redirect_to admins_spots_path   
+        else
+            @tourists = Tourist.all
+            render :edit            
+        end
     end
 
     def destroy
