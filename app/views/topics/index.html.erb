@@ -1,18 +1,26 @@
-<%#エラー文、後から%>
 <h1>Topics#index</h1>
 
 <h1>トピック一覧</h1>
 <ul>
   <% @topics.each do |topic| %>
-    <li><%= link_to topic.title, topics_show_path(topic.id) %></li>
-    <%= link_to '[削除]', topic_delete_path(topic.id), method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
+    <li><%= link_to topic.title, topic_path(topic.id) %></li>
+
+
+    <% if topic.customer == current_customer %>
+      <%= link_to '[削除]', topic_path(topic.id), method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
+    <% end %>
+
+    <% if admin_signed_in? %>
+      <%= link_to '[削除]', topic_path(topic.id), method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
+    <% end %>
   <% end %>
-<%#自分が立ててないトピックも消せれるよ！！、立てた人と管理者だけ！！%>
+
 
 
 </ul>
 <h1>トピック新規登録</h1>
-<%= form_for @newTopic, :url => {:action => 'create'} do |f| %>
+<%= render 'layouts/errors', obj: @newtopic %>
+<%= form_with model: @newtopic, local: true do |f| %>
   <%= f.text_field :title %>
   <%= f.submit %>
 <% end %>

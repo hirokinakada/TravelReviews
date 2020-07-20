@@ -54,3 +54,27 @@
         src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
 </script>
 <!--GoogleMap-->
+
+<!--ここから口コミ一覧-->
+    <% @reviews.each do |review| %>
+        <%= review.title %>
+        <%= review.body %>
+        <%= attachment_image_tag(review, :image, :fill, 70, 70, fallback: "noimage.jpg") %>
+        <%= link_to review.customer.nickname, customer_path(review.customer_id) %>
+        <%= link_to "Destroy", admins_review_path(review.id), method: :delete %>
+
+<!--星評価-->
+    <div id="star-rate-<%= review.id %>"></div>
+        <script>
+            $('#star-rate-<%= review.id %>').raty({
+            size: 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn :  '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= review.rate %>,
+            });
+        </script>  
+<!--/星評価-->
+    <% end %>

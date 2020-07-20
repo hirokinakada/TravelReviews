@@ -53,6 +53,10 @@
 </script>
 <!--GoogleMap-->
 
+
+<!--エラー文-->
+<%= render 'layouts/errors', obj: @review %>
+
 <%#ここから、口コミ投稿view%>
     <%= form_for @review do |f| %>
         <%= f.hidden_field :spot_id, value: @spot.id %>
@@ -83,13 +87,13 @@
 <%#ここまで、口コミ投稿view%>
 
 <!--ここから口コミ一覧-->
-    <% @reviews.each do |review| %>
-    <%= review.title %>
-    <%= review.body %>
-    <%= attachment_image_tag(review, :image, :fill, 70, 70, fallback: "noimage.jpg") %>
-    <%= link_to review.customer.nickname, customer_path(review.customer_id) %>
+    <% @spot.reviews.each do |review| %>
+        <%= review.title %>
+        <%= review.body %>
+        <%= attachment_image_tag(review, :image, :fill, 70, 70, fallback: "noimage.jpg") %>
+        <%= link_to review.customer.nickname, customer_path(review.customer_id) %>
     <% if customer_signed_in? && review.customer.id == current_customer.id %>
-    <%= link_to "Destroy", review_path(review.id), method: :delete %>
+        <%= link_to "削除", review_path(review.id), method: :delete %>
     <% end %>
 
 
