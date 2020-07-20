@@ -8,6 +8,7 @@
         <li><%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete %></li>
         <p><%= link_to  "観光地域登録", admins_tourists_path %></p>
         <p><%= link_to  "spot一覧登録", admins_spots_path %></p>
+        <p><%= link_to  '掲示板', topics_path %></p>
 
         <% elsif customer_signed_in? %>
         <li><p>ようこそ、<%= current_customer.nickname %>さん！</p></li>
@@ -17,7 +18,7 @@
 
         <li><%= link_to  'About', home_about_path %></li>
 
-        <li><%= link_to  '掲示板', topics_index_path %></li>
+        <li><%= link_to  '掲示板', topics_path %></li>
 
         <% else %>
 

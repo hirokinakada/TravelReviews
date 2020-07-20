@@ -4,7 +4,11 @@ class ReviewsController < ApplicationController
         @review = Review.new(review_params)
         if  @review.save
             redirect_to spot_path(@review.spot)
-        #ここにelse後から
+        else
+            @spot = @review.spot#????
+            #@spot = Spot.find(params[:review][:spot_id])
+            render 'spots/show'
+        end
     end
 
     def destroy

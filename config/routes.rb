@@ -8,12 +8,10 @@ Rails.application.routes.draw do
   devise_for :customers
 
 #掲示板用
-  get 'topics/index'
-  get 'topics/show/:id' => 'topics#show', as: :topics_show
-  post 'topics/create' => 'topics#create'
-  delete 'topics/delete/:id' => 'topics#delete', as: :topic_delete
   post 'posts/create' => 'post#create', as: :post_create
-
+  delete 'posts/:id' => 'post#destroy', as: :post_destroy
+  resources :topics
+  
 #共通
   root 'home#top'
   get 'home/about'
@@ -37,5 +35,6 @@ Rails.application.routes.draw do
     get 'home' => 'home#top'
     resources :tourists
     resources :spots
+    resources :reviews, only: [:destroy]
   end
 end
