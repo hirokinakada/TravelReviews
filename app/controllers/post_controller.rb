@@ -1,4 +1,7 @@
 class PostController < ApplicationController
+
+    before_action :authenticate_customer!, only: [:create, :destroy]
+
     def create
         @post = Post.new(post_params)
         @post.customer_id = current_customer.id

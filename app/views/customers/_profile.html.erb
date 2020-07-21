@@ -1,24 +1,33 @@
-<%= attachment_image_tag(customer, :image_id, :fill, 40, 40, fallback: "noimage.jpg", size:'50x50') %>
+  <%= attachment_image_tag(customer, :image_id, 
+  :fill, 40, 40, fallback: "noimage.jpg", size:'50x50') %>
 <%#アイコンあとで丸くしたい%>
-<%= customer.nickname %>
+  <%= customer.nickname %>
 
-<% if customer_signed_in? && customer.id == current_customer.id %>
-<%= link_to  "情報変更", edit_customer_path(current_customer) %>
-<% end %>
-
-<%=link_to customer.follower.count, customer_relationships_follows_path(customer) %>
-
-<%=link_to customer.followed.count,customer_relationships_followers_path(customer) %>
+  <% if customer_signed_in? && customer.id == current_customer.id %>
+      <%= link_to  "情報変更", edit_customer_path(current_customer) %>
+  <% end %>
 
 
-<% if customer_signed_in? && customer.id != current_customer.id %>
-    <% if current_customer.following?(customer) %>
-		<%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST %>
-	<% else %>
-		<%= link_to 'フォローする', follow_path(customer.id), method: :POST %>
-	<% end %>
-<% end %>
 
+    <%=link_to customer.follower.count, customer_relationships_follows_path(customer) %>
+
+    <%=link_to customer.followed.count,customer_relationships_followers_path(customer) %>
+
+
+
+  <% if customer_signed_in? && customer.id != current_customer.id %>
+      <% if current_customer.following?(customer) %>
+		    <%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST %>
+	    <% else %>
+	    	<%= link_to 'フォローする', follow_path(customer.id), method: :POST %>
+	    <% end %>
+
+  <% else %>
+  <% end %>
+
+
+
+  <% if customer_signed_in? %>
 <!--ここから口コミ一覧-->
     <% @reviews.each do |review| %>
     <%= review.title %>
@@ -26,6 +35,14 @@
     <%= attachment_image_tag(review, :image, :fill, 70, 70, fallback: "noimage.jpg") %>
     <%= link_to review.customer.nickname, customer_path(review.customer_id) %>
     <% if customer_signed_in? && customer.id == current_customer.id %>
-    <%= link_to "Destroy", review_path(review.id), method: :delete %>
+    <%= link_to "削除", review_path(review.id), method: :delete %>
     <% end %>
     <% end %>
+<!--〆口コミ一覧-->
+
+  <% else %>
+    <p>この会員の口コミを見るには、
+    <%= link_to 'ログイン', new_customer_session_path %>
+    もしくは、<%= link_to '新規登録', new_customer_registration_path %>が必要になります！！
+    </p>
+  <% end %>

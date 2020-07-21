@@ -1,5 +1,7 @@
 class Admins::SpotsController < ApplicationController
 
+    before_action :authenticate_admin!
+
     def show
         @spot = Spot.find(params[:id])
         @review = Review.new

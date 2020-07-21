@@ -1,6 +1,6 @@
 
 <header>
-    <span>ろご</span>
+    <span><%= link_to  "ロゴ入れるよ", root_path %></span>
     <nav>
       <ul>
 
@@ -20,6 +20,8 @@
 
         <li><%= link_to  '掲示板', topics_path %></li>
 
+        <li><%= link_to  "エリア一覧", tourists_path %></li>
+
         <% else %>
 
         <li><%= link_to '新規登録', new_customer_registration_path %></li>
@@ -27,6 +29,10 @@
         <li><%= link_to 'ログイン', new_customer_session_path %></li>
 
         <li><%= link_to  'About', home_about_path %></li>
+
+        <li><%= link_to  "エリア一覧", tourists_path %></li>
+
+        <li><%= link_to  '掲示板', topics_path %></li>
         <% end %>
       </ul>
     </nav>

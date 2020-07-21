@@ -14,13 +14,20 @@
       <%= link_to '[削除]', topic_path(topic.id), method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
     <% end %>
   <% end %>
-
-
-
 </ul>
+
+<% if admin_signed_in? %>
+<h1>管理者画面</h1>
+
+<% elsif customer_signed_in? %>
 <h1>トピック新規登録</h1>
 <%= render 'layouts/errors', obj: @newtopic %>
 <%= form_with model: @newtopic, local: true do |f| %>
   <%= f.text_field :title %>
   <%= f.submit %>
+<% end %>
+
+<% else %>
+<p>新しいトピックを立てる、コメントをする場合は、<%= link_to 'ログイン', new_customer_session_path %>
+もしくは、<%= link_to '新規登録', new_customer_registration_path %>が必要になります！！</p>
 <% end %>
