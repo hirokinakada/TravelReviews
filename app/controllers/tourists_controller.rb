@@ -1,7 +1,7 @@
 class TouristsController < ApplicationController
 
     def index
-        @tourists = Tourist.all
+        @tourists = Tourist.page(params[:page]).reverse_order.per(4)
     end
 
     def show

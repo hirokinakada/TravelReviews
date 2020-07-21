@@ -1,5 +1,7 @@
 class Admins::TouristsController < ApplicationController
 
+    before_action :authenticate_admin!
+
     def index
         @tourists = Tourist.all
         @tourist = Tourist.new

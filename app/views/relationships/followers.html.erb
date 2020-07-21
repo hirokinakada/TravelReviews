@@ -11,11 +11,14 @@
 			<td><%= "フォロワー数: #{customer.followed.count}" %></td>
 
 			<td>
-            <% if current_customer.following?(customer) %>
-				<%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST %>
-			<% else %>
-			    <%= link_to 'フォローする', follow_path(customer.id), method: :POST %>
-			<% end %>
+				<% if customer_signed_in? %>
+            		<% if current_customer.following?(customer) %>
+						<%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST %>
+					<% else %>
+			    		<%= link_to 'フォローする', follow_path(customer.id), method: :POST %>
+					<% end %>
+				<% else %>
+				<% end %>
 			</td>
 		</tr>
 		<% end %>

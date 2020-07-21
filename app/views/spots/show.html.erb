@@ -51,9 +51,9 @@
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
 </script>
-<!--GoogleMap-->
+<!--〆GoogleMap-->
 
-
+<% if customer_signed_in? %>
 <!--エラー文-->
 <%= render 'layouts/errors', obj: @review %>
 
@@ -116,4 +116,10 @@
         </script>  
 <!--/星評価-->
     <% end %>
-    
+
+<% else %>
+    <p>口コミが<%= @spot.reviews.all.count %>件あります。</p>
+    <p>このスポットに対する、口コミを見るには,
+    <%= link_to 'ログイン', new_customer_session_path %>
+    もしくは、<%= link_to '新規登録', new_customer_registration_path %>が必要になります！！</p>
+<% end %>
