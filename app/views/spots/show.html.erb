@@ -94,6 +94,7 @@
         <%= link_to review.customer.nickname, customer_path(review.customer_id) %>
     <% if customer_signed_in? && review.customer.id == current_customer.id %>
         <%= link_to "削除", review_path(review.id), method: :delete %>
+        <%= link_to  "編集", edit_review_path(review.id) %>
     <% end %>
 
 
