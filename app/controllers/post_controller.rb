@@ -8,16 +8,16 @@ class PostController < ApplicationController
         if  @post.save
             redirect_to topic_path(params[:post]['topic_id'])
         else
-            @topic = Topic.find(params[:post][:topic_id])#違う気
+            @topic = Topic.find(params[:post][:topic_id])
             @posts = @topic.posts
-            render 'topics/show'#???
+            render 'topics/show'
         end
     end
 
     def destroy
         @post = Post.find(params[:id])
         @post.destroy
-        redirect_to topic_path(topic_id)#???
+        redirect_to topic_path(topic_id)
     end
 
 private
