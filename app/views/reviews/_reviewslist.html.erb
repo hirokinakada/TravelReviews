@@ -1,0 +1,53 @@
+
+<% if customer_signed_in? %>
+<!--ここから口コミ一覧-->
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-6">
+          <% reviews.each do |review| %>
+            <div class="row box">
+
+                <p><%= link_to review.spot.name, spot_path(review.spot) %></p>
+                <h3><%= review.title %> </h3>
+                <!--いいね機能について-->
+                <span class="review_<%= review.id %>">
+                    <%= render  "reviews/favo",review:review , 
+                    customer:current_customer %></span>
+
+                <p>投稿者</br><%= link_to review.customer.nickname, customer_path(review.customer_id) %></p>
+
+                <div class="word-date">内容</br><%= review.body %></div>
+
+                <!--星評価-->
+                <div id="star-rate-<%= review.id %>"></div>
+                <script>
+                    $('#star-rate-<%= review.id %>').raty({
+                    size: 36,
+                    starOff:  '<%= asset_path('star-off.png') %>',
+                    starOn :  '<%= asset_path('star-on.png') %>',
+                    starHalf: '<%= asset_path('star-half.png') %>',
+                    half: true,
+                    readOnly: true,
+                    score: <%= review.rate %>,
+                    });
+                </script>  
+                <!--/星評価-->
+                <% if customer_signed_in? && customer.id == current_customer.id %>
+                    <p><%= link_to  "編集する", edit_review_path(review.id) %>
+                    <%= link_to "削除する", review_path(review.id), method: :delete %></p>
+                <% end %>
+            </div>
+        <% end %>
+        </div>
+    </div>
+
+    <% else %>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-9">
+                <p>口コミを見るには,
+                <%= link_to 'ログイン', new_customer_session_path %>
+                もしくは、<%= link_to '新規登録', new_customer_registration_path %>が必要になります！！</p>
+            </div>
+    <% end %>

@@ -1,18 +1,36 @@
-<%= @tourist.name %></td>
-<%= @tourist.overview %></td>
-<%= attachment_image_tag(@tourist, :image, :fill, 70, 70, fallback: "noimage.jpg") %>
 
 
-<p>登録スポット</p>
-<% @spots.each do |spot| %>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
 
-    <p><%= attachment_image_tag(spot, :image, :fill, 70, 70, fallback: "noimage.jpg") %></p>
+        <div class="row box">
+            <div class="col-md-5">
+                <h3><%= @tourist.name %></h3>
+                <div><%= @tourist.overview %></div>
+            </div>
 
-    <p><%= spot.name %></p>
+            <div class="col-md-7">
+                <div><%= attachment_image_tag(@tourist, :image, :fill, 1000, 709, 
+                fallback: "noimage.jpg", size:'500x355', class:'img') %></div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <p><%= spot.overview %></p>
 
-    <p><%= spot.address %>
+<div class="row">
+    <% @spots.each do |spot| %>
+        <div class="col-md-4">
+            <div class="box">
+            <div><%= attachment_image_tag(spot, :image, :fill, 1000, 709, 
+                fallback: "noimage.jpg", size:'333x236', class:'img') %></div>
 
-    <p><%= spot.tourist.name %></p>
+            <h4><%= link_to spot.name, admins_spot_path(spot) %></h4>
+            <p><%= spot.address %></p>
+
+            <div><%= spot.overview %></div>
+            </div>
+        </div>
     <% end %>
+</div>

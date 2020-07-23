@@ -1,24 +1,33 @@
 
-    <p><%= attachment_image_tag(@spot, :image, :fill, 70, 70, fallback: "noimage.jpg") %></p>
+<div class="row">
 
-    <p><%= @spot.name %></p>
+        <div class="row box">
+            <div class="col-md-6">
+                <h3> <%= @spot.name %> </h3>
+                <p><%= link_to '編集する', edit_admins_spot_path(@spot) %>
+                <%= link_to "削除する", admins_spot_path(@spot), method: :delete, "data-confirm" => 'Are you sure?' %>
+                </p>
 
-    <p><%= @spot.overview %></p>
+                <p>住所</br><%= @spot.address %></p>
+                <div>概要</br><%= @spot.overview %></div>
+            </div>
 
-    <p><%= @spot.address %>
-
-    <p>登録エリア<%= @spot.tourist.name %></p>
-
-    <p><%= link_to '編集する', edit_admins_spot_path(@spot) %>
-    <%= link_to "削除する", admins_spot_path(@spot), method: :delete, "data-confirm" => 'Are you sure?' %>
-    </p>
-
+            <div class="col-md-6">
+                <div><%= attachment_image_tag(@spot, :image, 
+                :fill, 1000, 709, fallback: "noimage.jpg", 
+                size:'500x355', class:'img') %>
+                </div>
+            </div>
+        </div>
+</div>
 <!--GoogleMap-->
+<div class="row">
+
 <div id="map"></div>
 
 <style>
 #map{
-  height: 400px;
+  height: 350px;
 }
 </style>
 
@@ -53,28 +62,38 @@
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
 </script>
-<!--GoogleMap-->
+
+</div>
+<!--〆GoogleMap-->
 
 <!--ここから口コミ一覧-->
-    <% @reviews.each do |review| %>
-        <%= review.title %>
-        <%= review.body %>
-        <%= attachment_image_tag(review, :image, :fill, 70, 70, fallback: "noimage.jpg") %>
-        <%= link_to review.customer.nickname, customer_path(review.customer_id) %>
-        <%= link_to "Destroy", admins_review_path(review.id), method: :delete %>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-6">
+        <% @reviews.each do |review| %>
+            <div class="row box">
+                <h3> <%= review.title %> </h3>
+                <p><%= link_to "Destroy", admins_review_path(review.id), method: :delete %>
+                </p>
 
-<!--星評価-->
-    <div id="star-rate-<%= review.id %>"></div>
-        <script>
-            $('#star-rate-<%= review.id %>').raty({
-            size: 36,
-            starOff:  '<%= asset_path('star-off.png') %>',
-            starOn :  '<%= asset_path('star-on.png') %>',
-            starHalf: '<%= asset_path('star-half.png') %>',
-            half: true,
-            readOnly: true,
-            score: <%= review.rate %>,
-            });
-        </script>  
-<!--/星評価-->
-    <% end %>
+                <p>投稿者</br><%= link_to review.customer.nickname, customer_path(review.customer_id) %></p>
+                <div class="word-date">内容</br><%= review.body %></div>
+            <!--星評価-->
+                <div id="star-rate-<%= review.id %>"></div>
+                <script>
+                    $('#star-rate-<%= review.id %>').raty({
+                    size: 36,
+                    starOff:  '<%= asset_path('star-off.png') %>',
+                    starOn :  '<%= asset_path('star-on.png') %>',
+                    starHalf: '<%= asset_path('star-half.png') %>',
+                    half: true,
+                    readOnly: true,
+                    score: <%= review.rate %>,
+                    });
+                </script>  
+            <!--/星評価-->
+            </div>
+ 
+            <% end %>
+        </div>
+    </div>

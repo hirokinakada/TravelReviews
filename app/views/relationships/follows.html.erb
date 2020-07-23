@@ -1,9 +1,18 @@
 <h1>Follow</h1>
-<table>
+<table class="table txts table-hover table-inverse">
+	<thead>
+		<tr>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
 	<tbody>
 		<% @customers.each do |customer| %>
 		<tr>
-			<td><%= attachment_image_tag(customer, :image, :fill, 50, 50, fallback: "noimage.jpg") %></td>
+			<td><%= attachment_image_tag(customer, :image, :fill, 50, 50, fallback: "noimage.jpg", size:'80x80') %></td>
 
 			<td><%= link_to customer.nickname, customer_path(customer.id) %></td>
 

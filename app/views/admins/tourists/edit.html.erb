@@ -1,20 +1,28 @@
-<h1>観光地域変更</h1>
+<h1 class="headline">観光地域変更</h1>
 
 <%= render 'layouts/errors', obj: @tourist %>
 
+<div class="row box">
     <%= form_for (@tourist), url: admins_tourist_path do |f| %>
 
-        <%= f.label :name, "地名" %>
+    <div class="col-md-4">
+        <%= f.label :name, "地名" %></br>
         <%= f.text_field :name %></br>
 
-        <%= f.label :overview, "概要" %>
-        <%= f.text_field :overview %></br>
+        <%= f.label :overview, "概要" %></br>
+        <%= f.text_area :overview %></br>
+    </div>
 
+    <div class="col-md-4">
         <%= f.label :image, "image" %>
         <%= f.attachment_field :image %></br>
+    </div>
 
-        <%= f.submit "変更" %>
+    <div class="col-md-4">
+        <%= f.submit "変更" , class:"btn-gradation" %>
     <% end %>
 
-    <%= link_to '[削除]', admins_tourist_path(@tourist.id), method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
-    
+    </br><%= link_to '[削除]', admins_tourist_path(@tourist.id), 
+    method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
+    </div>
+</div>

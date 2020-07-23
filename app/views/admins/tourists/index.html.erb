@@ -1,22 +1,31 @@
-<h1>観光エリア登録</h1>
 
-    <%= render 'layouts/errors', obj: @tourist %>
+
+<h1 class="headline">エリア登録</h1>
+<%= render 'layouts/errors', obj: @tourist %>
+<div class="row box">
 
     <%= form_for (@tourist), url: admins_tourists_path do |f| %>
 
-        <%= f.label :name, "地名" %>
+ 
+    <div class="col-md-4">
+        <%= f.label :name, "地名" %></br>
         <%= f.text_field :name %></br>
 
-        <%= f.label :overview, "概要" %>
-        <%= f.text_field :overview %></br>
+        <%= f.label :overview, "概要" %></br>
+        <%= f.text_area :overview %>
+    </div>
 
-        <%= f.label :image, "image" %>
-        <%= f.attachment_field :image %></br>
+    <div class="col-md-4">
+        </br><%= f.label :image, "画像" %>
+        <%= f.attachment_field :image %>
+    </div>
 
-        <%= f.submit "登録" %>
+    <div class="col-md-4">
+        </br><%= f.submit "エリア登録", class:"btn-gradation" %>
     <% end %>
+    </div>
+</div>
 
-    <p>-------------------------------------------------</p>
 <%= render "admins/tourists/touristlist", tourists: @tourists %>
 
 

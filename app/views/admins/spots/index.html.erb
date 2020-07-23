@@ -1,47 +1,59 @@
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 box">
 
-<%= render 'layouts/errors', obj: @spot %>
+        <%= render 'layouts/errors', obj: @spot %>
 
-<%= form_for (@spot), url: admins_spots_path do |f| %>
-    <%= f.label :name, "観光地名" %>
-    <%= f.text_field :name %>
+    <%= form_for (@spot), url: admins_spots_path do |f| %>
 
-    <%= f.label :住所 %>
-    <%= f.text_area :address, autofocus: true %>
+    <div class="col-md-4">
+        <%= f.label :name, "観光地名" %></br>
+        <%= f.text_field :name %></br>
 
-    <%= f.label :overview, "概要" %>
-    <%= f.text_area :overview %>
+        <%= f.label :住所 %></br>
+        <%= f.text_area :address, autofocus: true %>
+    </div>
 
-    <%= f.label :image, "画像"%>
-    <%= f.attachment_field :image %>
+    <div class="col-md-4">
+        <%= f.label :overview, "概要" %></br>
+        <%= f.text_area :overview %></br>
 
-    <%= f.label :tourist_id, "エリア選択" %>
-    <%= f.collection_select :tourist_id, @tourists, :id, :name, include_blank: "選択してください" %>
-    
-    <%= f.submit "登録" %>
+        <%= f.label :tourist_id, "エリア選択" %></br>
+        <%= f.collection_select :tourist_id, @tourists, :id, 
+        :name, include_blank: "選択してください" %>
+    </div>
+
+    <div class="col-md-4">
+        <%= f.label :image, "画像"%></br>
+        <%= f.attachment_field :image %></br>
+
+        <%= f.submit "登録" , class:"btn-gradation"%>
+    </div>
 
     <% end %>
 
+    </div>
+</div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>観光地</th>
-        <th>概要</th>
-        <th>image</th>
-        <th>編集</th>
-      </tr>
-    </thead>
 
-    <tbody>
-      <% @spots.each do |spot| %>
-        <tr>
-            <td><%= link_to spot.name, admins_spot_path(spot) %></td>
-            <td><%= spot.overview %></td>
+<div class="row">
+    <% @spots.each do |spot| %>
+      <div class="col-md-4">
+        <div class="box">
 
-            <td><%= attachment_image_tag(spot, :image, :fill, 400, 200, fallback: "noimage.jpg") %>
-            </td>
 
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+        <div><%= attachment_image_tag(spot, :image, 
+        :fill, 1000, 709, fallback: "noimage.jpg",size:'335x237', class:'img') %>
+        </div>
+
+
+        <h3 class="tourist_name">
+        <%= link_to spot.name, admins_spot_path(spot) %>
+        </h3>
+
+        <p class="word-date"><%= spot.overview %></p>
+        
+        </div>
+      </div>
+    <% end %>
+</div>
