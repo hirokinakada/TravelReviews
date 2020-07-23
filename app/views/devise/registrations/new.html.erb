@@ -1,53 +1,66 @@
-<h2>Sign up</h2>
+<h2 class="headline">新規登録</h2>
+<div class="row box">
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
+<div class="col-md-3">
+
   <div class="field">
-    <%= f.label :nickname %><br />
-    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
+    <%= f.label :姓 %><br />
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
   </div>
 
-    <div class="field">
-    <%= f.label :last_name %><br />
+  <div class="field">
+    <%= f.label :名 %><br />
     <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
   </div>
 
     <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
-  </div>
+    <%= f.label :ニックネーム  %><br />
+    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
+  </div><p>※当サイト内での表示名です。</p>
 
+</div>
+
+<div class="col-md-3">
     <div class="field">
-    <%= f.label :last_name_kana %><br />
-    <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
-  </div>
-    <div class="field">
-    <%= f.label :first_name_kana %><br />
+    <%= f.label :姓（カナ） %><br />
     <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
   </div>
 
+    <div class="field">
+    <%= f.label :名（カナ） %><br />
+    <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
+  </div>
+</div>
+
+<div class="col-md-3">
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :メールアドレス %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :パスワード %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(<%= @minimum_password_length %> 文字以上,必須)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :パスワード確認 %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
+</div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+<div class="col-md-3">
+  </br><div class="actions">
+    <%= f.submit "登録", class:"btn-gradation" %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+
+</div>
+</div>
