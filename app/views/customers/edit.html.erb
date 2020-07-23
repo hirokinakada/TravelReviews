@@ -1,17 +1,28 @@
+<div class="container">
+	<%= render 'layouts/errors', obj: @customer %>
 
-<%= render 'layouts/errors', obj: @customer %>
+<div class="row box">
+	<%= form_for(@customer) do |f| %>
 
-<%= form_for(@customer) do |f| %>
-
-<div class="field">
-	<%= f.label :nickname %>
-	<%= f.text_field :nickname, class: "nickname" %>
+<div class="col-md-4">
+	<div class="field">
+		<%= f.label :ニックネーム変更を変更する %></br>
+		<%= f.text_field :nickname, class: "nickname" %>
+	</div>
 </div>
 
-<%#ここに画像編集%>
-
-<div class="actions">
-	<%= f.submit %>
+<div class="col-md-4">
+	<div class="field">
+		<%= f.label :プロフィール画像を変更する %>
+		<%= f.attachment_field :image, class: "customer_image" %>
+	</div>
 </div>
 
-<% end %>
+<div class="col-md-4">
+	</br><div class="actions">
+		</br><%= f.submit "更新する", class:"btn-gradation" %>
+	</div>
+</div>
+	<% end %>
+</div>
+</div>

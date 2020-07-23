@@ -1,4 +1,7 @@
 
-<h2>Customer page</h2>
+<!--ここだけフッターがおかしい-->
+
 <%= render 'customers/profile', customer: @customer %>
 
+<!--口コミ一覧-->
+<%= render 'reviews/reviewslist', reviews: @reviews ,customer: @customer %>

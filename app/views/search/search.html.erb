@@ -1,54 +1,50 @@
 <% if @tourist_or_spot == "1"%>
-    <h1>観光エリア</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>地名</th>
-        <th>概要</th>
-        <th>image</th>
-        <th>編集</th>
-      </tr>
-    </thead>
 
-    <tbody>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
       <% @tourists.each do |tourist| %>
-        <tr>
-            <td><%= link_to tourist.name, tourist_path(tourist) %></td>
-            <td><%= tourist.overview %></td>
+        <div class="row box">
+            <div class="col-md-5">
+                <h3><%= link_to tourist.name, tourist_path(tourist) %></h3>
+                <div><%= tourist.overview %></div>
+            </div>
 
-            <td><%= attachment_image_tag(tourist, :image, :fill, 400, 200, fallback: "noimage.jpg") %>
-            </td>
-        </tr>
+            <div class="col-md-7">
+                <div><%= attachment_image_tag(tourist, :image, :fill, 1000, 709, 
+                fallback: "noimage.jpg", size:'500x355', class:'img') %></div>
+            </div>
+        </div>
       <% end %>
-    </tbody>
-  </table>
+    </div>
+</div>
 
-  <% elsif @tourist_or_spot == "2" %>
-    <h2>観光スポット</h2>
 
-    <table>
-        <thead>
-                <tr>
-                    <th></th>
-                    <th>Title</th>
-                    <th>Opinion</th>
-                    <th colspan="3"></th>
-                </tr>
-        </thead>
-        
-        <% @spots.each do |spot| %>
-        <thead>
-        <td><%= attachment_image_tag(spot, :image, :fill, 70, 70, fallback: "noimage.jpg") %></td>
+<% elsif @tourist_or_spot == "2" %>
 
-        <td><%= link_to spot.name, spot_path(spot) %></td>
 
-        <td><%= spot.overview %></td>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <% @spots.each do |spot| %>
+        <div class="row box">
+            <div class="col-md-5">
+                <h4><%= link_to spot.name, spot_path(spot) %></h4>
+                <p><%= spot.address %></p>
+                <div><%= spot.overview %></div>
+            </div>
 
-        <td><%= spot.address %></td>
+            <div class="col-md-7">
+                <div><%= attachment_image_tag(spot, :image, :fill, 1000, 709, 
+                fallback: "noimage.jpg", size:'500x355', class:'img') %></div>
+            </div>
+        </div>
+      <% end %>
+    </div>
+</div>
 
-        <td><%= spot.tourist.name %></td>
-        <% end %>
-        </thead>
-    </table>
 <% else %>
+
+<h2 class="他のキーワードで検索してみてください。"></h2>
+
 <% end %>

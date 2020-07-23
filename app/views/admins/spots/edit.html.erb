@@ -1,22 +1,37 @@
-<%= render 'layouts/errors', obj: @spot %>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 box">
 
+        <%= render 'layouts/errors', obj: @spot %>
 
-<%= form_for (@spot), url: admins_spot_path do |f| %>
-    <%= f.label :name, "観光地名" %>
-    <%= f.text_field :name %>
+    <%= form_for (@spot), url: admins_spot_path do |f| %>
 
-    <%= f.label :住所 %>
-    <%= f.text_area :address, autofocus: true %>
+    <div class="col-md-4">
+        <%= f.label :name, "観光地名" %></br>
+        <%= f.text_field :name %></br>
 
-    <%= f.label :overview, "概要" %>
-    <%= f.text_area :overview %>
+        <%= f.label :住所 %></br>
+        <%= f.text_area :address, autofocus: true %>
+    </div>
 
-    <%= f.label :image, "画像"%>
-    <%= f.attachment_field :image %>
+    <div class="col-md-4">
+        <%= f.label :overview, "概要" %></br>
+        <%= f.text_area :overview %></br>
 
-    <%= f.label :tourist_id, "エリア選択" %>
-    <%= f.collection_select :tourist_id, @tourists, :id, :name, include_blank: "選択してください" %>
-    
-    <%= f.submit "登録" %>
+        <%= f.label :tourist_id, "エリア選択" %></br>
+        <%= f.collection_select :tourist_id, @tourists, :id, 
+        :name, include_blank: "選択してください" %>
+    </div>
+
+    <div class="col-md-4">
+        <%= f.label :image, "画像"%></br>
+        <%= f.attachment_field :image %></br>
+
+        <%= f.submit "登録" , class:"btn-gradation"%>
+    </div>
 
     <% end %>
+
+    </div>
+
+</div>

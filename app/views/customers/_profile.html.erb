@@ -1,48 +1,41 @@
-  <%= attachment_image_tag(customer, :image_id, 
-  :fill, 40, 40, fallback: "noimage.jpg", size:'50x50') %>
+<% if customer_signed_in? && customer.id == current_customer.id %>
+    <h2>マイページ</h2>
+<% else %>
+    <h2>会員ページ</h2>
+<% end %>
+
+<div class="row box">
+        <div class="col-md-4"><%= attachment_image_tag(customer, :image, 
+          :fill, 40, 40, fallback: "noimage.jpg", size:'80x80') %></div>
 <%#アイコンあとで丸くしたい%>
-  <%= customer.nickname %>
 
-  <% if customer_signed_in? && customer.id == current_customer.id %>
-      <%= link_to  "情報変更", edit_customer_path(current_customer) %>
-  <% end %>
+        <div class="col-md-4">
+        <p><%= customer.nickname %></p>
 
-
-
-    <%=link_to customer.follower.count, customer_relationships_follows_path(customer) %>
-
-    <%=link_to customer.followed.count,customer_relationships_followers_path(customer) %>
-
-
-
-  <% if customer_signed_in? && customer.id != current_customer.id %>
-      <% if current_customer.following?(customer) %>
-		    <%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST %>
-	    <% else %>
-	    	<%= link_to 'フォローする', follow_path(customer.id), method: :POST %>
-	    <% end %>
-
-  <% else %>
-  <% end %>
-
-
-
-  <% if customer_signed_in? %>
-<!--ここから口コミ一覧-->
-    <% @reviews.each do |review| %>
-    <%= review.title %>
-    <%= review.body %>
-    <%= attachment_image_tag(review, :image, :fill, 70, 70, fallback: "noimage.jpg") %>
-    <%= link_to review.customer.nickname, customer_path(review.customer_id) %>
     <% if customer_signed_in? && customer.id == current_customer.id %>
-    <%= link_to "削除", review_path(review.id), method: :delete %>
+        <p><%= link_to  "情報変更", 
+            edit_customer_path(current_customer) ,class: "edit_btn" %></p>
     <% end %>
-    <% end %>
-<!--〆口コミ一覧-->
+        </div>
 
-  <% else %>
-    <p>この会員の口コミを見るには、
-    <%= link_to 'ログイン', new_customer_session_path %>
-    もしくは、<%= link_to '新規登録', new_customer_registration_path %>が必要になります！！
-    </p>
-  <% end %>
+        <div class="col-md-4">
+        <span>フォロー数<%=link_to customer.follower.count, 
+        customer_relationships_follows_path(customer) %>人</span>
+
+        <span>フォロワー数<%=link_to customer.followed.count,
+        customer_relationships_followers_path(customer) %>人</span>
+
+
+    <% if customer_signed_in? && customer.id != current_customer.id %>
+      <% if current_customer.following?(customer) %>
+		    <span><%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST %></span>
+	    <% else %>
+	    	<span><%= link_to 'フォローする', follow_path(customer.id), method: :POST %></span>
+	    <% end %>
+    <% else %>
+        <span></span>
+    <% end %>
+      </div>
+    </div>
+</div>
+

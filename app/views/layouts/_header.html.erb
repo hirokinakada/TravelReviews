@@ -1,39 +1,47 @@
 
-<header>
-    <span><%= link_to  "ロゴ入れるよ", root_path %></span>
+<header  class="navbar navbar-fixed-top">
+  <div class="container">
+    <nav class='nav navbar-nav navbar-left' >
+          <h2 class="headline"><%= link_to  "Travel Reviews", root_path %></h2>
     <nav>
-      <ul>
+
+
+    <nav class="collapse navbar-collapse" id="navbarList">
+      <ul class="nav navbar-nav navbar-right">
 
         <% if admin_signed_in? %>
-        <li><%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete %></li>
-        <p><%= link_to  "観光地域登録", admins_tourists_path %></p>
-        <p><%= link_to  "spot一覧登録", admins_spots_path %></p>
-        <p><%= link_to  '掲示板', topics_path %></p>
+        <li><%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete , class: "nav_txt" %></li>
+        <li><%= link_to  "観光地域登録", admins_tourists_path , class: "nav_txt" %></li>
+        <li><%= link_to  "spot一覧登録", admins_spots_path , class: "nav_txt" %></li>
+        <li><%= link_to  '掲示板', topics_path , class: "nav_txt" %></li>
 
         <% elsif customer_signed_in? %>
-        <li><p>ようこそ、<%= current_customer.nickname %>さん！</p></li>
-        <li><%= link_to 'まいぺーじ' , customer_path(current_customer.id) %></li>
+        <li>ようこそ、<%= current_customer.nickname %>さん！</li>
+        <li><%= link_to 'マイページ' , customer_path(current_customer.id), class: "nav_txt"  %></li>
 
-        <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
+        <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete , class: "nav_txt" %></li>
 
-        <li><%= link_to  'About', home_about_path %></li>
+        <li><%= link_to  'About', home_about_path , class: "nav_txt" %></li>
 
-        <li><%= link_to  '掲示板', topics_path %></li>
+        <li><%= link_to  '掲示板', topics_path , class: "nav_txt" %></li>
 
-        <li><%= link_to  "エリア一覧", tourists_path %></li>
+        <li><%= link_to  "エリア一覧", tourists_path , class: "nav_txt" %></li>
 
         <% else %>
 
-        <li><%= link_to '新規登録', new_customer_registration_path %></li>
+        <li><%= link_to '新規登録', new_customer_registration_path , class: "nav_txt" %></li>
 
-        <li><%= link_to 'ログイン', new_customer_session_path %></li>
+        <li><%= link_to 'ログイン', new_customer_session_path , class: "nav_txt" %></li>
 
-        <li><%= link_to  'About', home_about_path %></li>
+        <li><%= link_to  'About', home_about_path , class: "nav_txt" %></li>
 
-        <li><%= link_to  "エリア一覧", tourists_path %></li>
+        <li><%= link_to  "エリア一覧", tourists_path , class: "nav_txt" %></li>
 
-        <li><%= link_to  '掲示板', topics_path %></li>
+        <li><%= link_to  '掲示板', topics_path , class: "nav_txt" %></li>
         <% end %>
       </ul>
     </nav>
+
+
+  </div>
 </header>
