@@ -46,7 +46,11 @@
     </div>
 
         <div class="col-md-4">
-            </br></br><%= f.submit "口コミを投稿する", class:"btn-gradation" %>
+        </br></br>
+        <%= button_tag :type => "submit", :class =>"btn-gradation" do %>
+            <i class="fas fa-edit"></i>口コミ投稿
+        <% end %>
+            
         </div>
     <% end %>
 

@@ -23,7 +23,7 @@
     </div>
 
   <div class="col-md-3">
-    <div class="box text-center">
+    <div class="box">
       
 
     <% if admin_signed_in? %>
@@ -32,9 +32,8 @@
     <% elsif customer_signed_in? %>
       <%= render 'layouts/errors', obj: @newtopic %>
       <%= form_with model: @newtopic, local: true do |f| %>
-      <%= f.text_area :title %>
-      </br></br>
-      <%= f.submit "トピックを立てる。", class:"btn-gradation" %>
+      <div class="text-center"><%= f.text_area :title %></div>
+      <div class="text-center"><%= f.submit "トピックを立てる。", class:"btn-gradation" %></div>
     <% end %>
 
     <% else %>
@@ -42,7 +41,7 @@
       もしくは、<%= link_to '新規登録', new_customer_registration_path %>が必要になります！！</p>
     <% end %>
 
-  </div>
+    </div>
   </div>
 
 </div>

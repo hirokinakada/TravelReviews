@@ -15,8 +15,8 @@ class Spot < ApplicationRecord
     
 
 
-    def Spot.search(search,tourist_or_spot)
+    def Spot.search(search)
         return Spot.all unless search
-        Spot.where(['name LIKE ?', "%#{search}%"])
+        Spot.where(['name LIKE ? OR address LIKE ? OR overview LIKE ?', "%#{search}%","%#{search}%","%#{search}%"])
       end
 end

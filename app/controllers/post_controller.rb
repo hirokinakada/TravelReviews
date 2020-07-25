@@ -1,6 +1,6 @@
 class PostController < ApplicationController
 
-    before_action :authenticate_customer!, only: [:create, :destroy]
+    before_action :authenticate_customer!, only: [:create]
 
     def create
         @post = Post.new(post_params)

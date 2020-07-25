@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
 
-  before_action :authenticate_customer!, only: [:create, :destroy]
+  before_action :authenticate_customer!, only: [:create]
 
   def index
     @topics = Topic.all

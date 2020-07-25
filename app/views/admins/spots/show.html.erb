@@ -73,7 +73,7 @@
         <% @reviews.each do |review| %>
             <div class="row box">
                 <h3> <%= review.title %> </h3>
-                <p><%= link_to "Destroy", admins_review_path(review.id), method: :delete %>
+                <p><%= link_to "削除", admins_review_path(review.id), method: :delete %>
                 </p>
 
                 <p>投稿者</br><%= link_to review.customer.nickname, customer_path(review.customer_id) %></p>
