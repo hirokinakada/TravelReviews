@@ -1,5 +1,5 @@
 class Tourist < ApplicationRecord
-    default_scope -> { order(created_at: :desc) }#投稿順に
+    #default_scope -> { order(created_at: :desc) }#投稿順に
     
     attachment :image, destroy: false
     has_many :spots, dependent: :destroy
@@ -8,8 +8,5 @@ class Tourist < ApplicationRecord
     validates :overview, presence: true
     
 
-    def self.search(search, tourist_or_spot)
-        return Tourist.all unless search
-        Tourist.where(['name LIKE ?', "%#{search}%"])
-    end
+
 end

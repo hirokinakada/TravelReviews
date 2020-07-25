@@ -78,3 +78,5 @@ gem 'geocoder'
 gem 'pry-rails'
 
 gem 'dotenv-rails'
+
+gem 'font-awesome-rails'

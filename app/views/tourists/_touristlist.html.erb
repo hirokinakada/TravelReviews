@@ -9,9 +9,13 @@
               </div>
 
 
-        <h3 class="tourist_name">
-        <%= link_to tourist.name, tourist_path(tourist) %>
+        
+        <%= link_to tourist_path(tourist) do %>
+        <h3>
+          <%= tourist.name %>
+          <i class="fas fa-arrow-right"></i>
         </h3>
+        <% end %>
         </div>
       </div>
     <% end %>

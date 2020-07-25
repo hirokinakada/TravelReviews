@@ -1,27 +1,3 @@
-<% if @tourist_or_spot == "1"%>
-
-<div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
-      <% @tourists.each do |tourist| %>
-        <div class="row box">
-            <div class="col-md-5">
-                <h3><%= link_to tourist.name, tourist_path(tourist) %></h3>
-                <div><%= tourist.overview %></div>
-            </div>
-
-            <div class="col-md-7">
-                <div><%= attachment_image_tag(tourist, :image, :fill, 1000, 709, 
-                fallback: "noimage.jpg", size:'500x355', class:'img') %></div>
-            </div>
-        </div>
-      <% end %>
-    </div>
-</div>
-
-
-<% elsif @tourist_or_spot == "2" %>
-
 
 <div class="row">
     <div class="col-md-1"></div>
@@ -42,9 +18,3 @@
       <% end %>
     </div>
 </div>
-
-<% else %>
-
-<h2 class="他のキーワードで検索してみてください。"></h2>
-
-<% end %>
