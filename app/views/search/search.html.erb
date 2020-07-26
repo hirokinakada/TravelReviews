@@ -1,4 +1,6 @@
-
+<% if params[:search] == "" %>
+<h3>他のキーワードでお探しください。</h3>
+<% else %>
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
@@ -18,3 +20,4 @@
       <% end %>
     </div>
 </div>
+<% end %>
