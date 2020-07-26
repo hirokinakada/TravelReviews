@@ -1,0 +1,17 @@
+
+<% if review.favorited_by?(current_customer) %>
+
+<%= link_to review_favorites_path(review), method: :delete, remote: true do %>
+<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+<%= review.favorites.count %>
+<% end %>
+
+<% else %>
+
+<%= link_to review_favorites_path(review), method: :post, remote: true do %>
+<span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+
+<%= review.favorites.count %>
+<% end %>
+
+<%end%>

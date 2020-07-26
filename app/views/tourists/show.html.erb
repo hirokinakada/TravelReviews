@@ -1,0 +1,42 @@
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+
+        <div class="row box">
+            <div class="col-md-5">
+                <h3><%= @tourist.name %></h3>
+                <div><%= @tourist.overview %></div>
+            </div>
+
+            <div class="col-md-7">
+                <div><%= attachment_image_tag(@tourist, :image, :fill, 1000, 709, 
+                fallback: "noimage.jpg", size:'500x355', class:'img') %></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <% @spots.each do |spot| %>
+        <div class="col-md-4">
+
+        <%= link_to(spot_path(spot), class: '') do %>
+
+            <div class="box">
+            <div><%= attachment_image_tag(spot, :image, :fill, 1000, 709, 
+                fallback: "noimage.jpg", size:'333x236', class:'img') %></div>
+
+            <h4><%= spot.name %></h4>
+
+            <p><%= spot.address %></p>
+
+            <p><i class="far fa-comment">
+            </i><%= spot.reviews.all.count %>件</p>
+            </div>
+
+        <% end %>
+        </div>
+    <% end %>
+</div>

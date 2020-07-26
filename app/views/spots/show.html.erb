@@ -1,0 +1,150 @@
+
+<div class="row">
+
+        <div class="row box">
+            <div class="col-md-6">
+                <h3> <%= @spot.name %> </h3>
+                <p>住所</br><%= @spot.address %></p>
+                <div>概要</br><%= @spot.overview %></div>
+            </div>
+
+            <div class="col-md-6">
+                <div><%= attachment_image_tag(@spot, :image, 
+                :fill, 1000, 709, fallback: "noimage.jpg", 
+                size:'500x355', class:'img') %>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+
+
+
+<!--GoogleMap-->
+<div class="row">
+
+<div id="map"></div>
+<style>
+#map{
+  height: 350px;
+}
+</style>
+
+<script type="text/javascript">
+    function initMap() {
+
+        var test ={lat: <%= @spot.latitude %>, lng: <%= @spot.longitude %>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: test
+        });
+        var transitLayer = new google.maps.TransitLayer();
+        transitLayer.setMap(map);
+
+        var contentString = '住所：<%= @spot.address %>';
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+        var marker = new google.maps.Marker({
+            position:test,
+            map: map,
+            title: contentString
+        });
+
+        marker.addListener('click', function() {
+            infowindow.open(map, marker);
+        });
+    }
+</script>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+</script>
+
+</div>
+<!--〆GoogleMap-->
+
+
+
+<% if customer_signed_in? %>
+<!--エラー文-->
+    <%= render 'layouts/errors', obj: @review %>
+<%#口コミ投稿view%>
+    <%= render 'reviews/form', review: @review , spot: @spot%>
+
+<!--ここから口コミ一覧-->
+
+
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-6">
+        <% @spot.reviews.each do |review| %>
+            <div class="row box">
+                <div class="col-md-6">
+
+                
+                <h3><%= review.title %> </h3>
+                <!--いいね機能について-->
+                <span class="review_<%= review.id %>">
+                    <%= render  "reviews/favo",review:review , 
+                    customer:current_customer %></span>
+
+                <p>投稿者</br><%= link_to review.customer.nickname, customer_path(review.customer_id) %></p>
+
+                <div class="word-date">内容</br><%= review.body %></div>
+
+                <!--星評価-->
+                <div id="star-rate-<%= review.id %>"></div>
+                <script>
+                    $('#star-rate-<%= review.id %>').raty({
+                    size: 36,
+                    starOff:  '<%= asset_path('star-off.png') %>',
+                    starOn :  '<%= asset_path('star-on.png') %>',
+                    starHalf: '<%= asset_path('star-half.png') %>',
+                    half: true,
+                    readOnly: true,
+                    score: <%= review.rate %>,
+                    });
+                </script>  
+                <!--/星評価-->
+
+                <% if customer_signed_in? && review.customer.id == current_customer.id %>
+                    <p><%= link_to  "編集する", edit_review_path(review.id) %>
+                    <%= link_to "削除する", review_path(review.id), method: :delete %></p>
+                <% end %>
+                </div>
+
+
+
+                <% if review.image.present? %>
+                    <div class="col-md-6">
+                        <div><%= attachment_image_tag(review, :image, :fill, 1000, 709, 
+                        fallback: "noimage.jpg" ,size:'240x170', class:'img') %>
+                        </div>
+                    </div>
+
+                <% else %>
+
+                    <div class="col-md-6"></div>
+                    <% end %>
+            </div>
+
+
+        <% end %>
+        </div>
+    </div>
+
+    <% else %>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-9">
+                <p>口コミが<%= @spot.reviews.all.count %>件あります。</p>
+                <p>このスポットに対する、口コミを見るには,
+                <%= link_to 'ログイン', new_customer_session_path %>
+                もしくは、<%= link_to '新規登録', new_customer_registration_path %>が必要になります！！</p>
+            </div>
+    <% end %>
+

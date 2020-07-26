@@ -1,0 +1,47 @@
+<h1 class="headline">掲示板</h1>
+
+<div class="row">
+  <div class="col-md-2"></div>
+
+    <div class="col-md-7">
+<ul>
+  <% @topics.each do |topic| %>
+    <li class="word-date"><%= link_to topic.title, topic_path(topic.id) %></br>
+
+
+    <% if topic.customer == current_customer %>
+      <%= link_to '[削除]', topic_path(topic.id), method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
+    <% end %>
+
+    <% if admin_signed_in? %>
+      <%= link_to '[削除]', topic_path(topic.id), method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
+    <% end %>
+    </li></br>
+  <% end %>
+</ul>
+
+    </div>
+
+  <div class="col-md-3">
+    <div class="box">
+      
+
+    <% if admin_signed_in? %>
+      <h1>管理者画面</h1>
+
+    <% elsif customer_signed_in? %>
+      <%= render 'layouts/errors', obj: @newtopic %>
+      <%= form_with model: @newtopic, local: true do |f| %>
+      <div class="text-center"><%= f.text_area :title %></div>
+      <div class="text-center"><%= f.submit "トピックを立てる。", class:"btn-gradation" %></div>
+    <% end %>
+
+    <% else %>
+      <p>新しいトピックを立てる、コメントをする場合は、<%= link_to 'ログイン', new_customer_session_path %>
+      もしくは、<%= link_to '新規登録', new_customer_registration_path %>が必要になります！！</p>
+    <% end %>
+
+    </div>
+  </div>
+
+</div>

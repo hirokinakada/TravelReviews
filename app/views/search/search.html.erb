@@ -1,0 +1,23 @@
+<% if params[:search] == "" %>
+<h3>他のキーワードでお探しください。</h3>
+<% else %>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <% @spots.each do |spot| %>
+        <div class="row box">
+            <div class="col-md-5">
+                <h4><%= link_to spot.name, spot_path(spot) %></h4>
+                <p><%= spot.address %></p>
+                <div><%= spot.overview %></div>
+            </div>
+
+            <div class="col-md-7">
+                <div><%= attachment_image_tag(spot, :image, :fill, 1000, 709, 
+                fallback: "noimage.jpg", size:'500x355', class:'img') %></div>
+            </div>
+        </div>
+      <% end %>
+    </div>
+</div>
+<% end %>

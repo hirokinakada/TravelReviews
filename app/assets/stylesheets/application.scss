@@ -15,4 +15,158 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
- 
+ @import "font-awesome";
+
+ body, input, textarea {
+  font-family: "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", "Meiryo", "verdana", sans-serif;
+}
+
+
+
+/*折り曲げ*/
+  .word-date{
+    overflow-wrap : break-word;
+  }
+/*いいねハート色-------------*/
+ .glyphicon-heart-empty {
+    width: 25px;
+    height: 30px;
+    font-size: 25px;
+    color: #808080; 
+    margin-left: 20px;
+  }
+   
+  .glyphicon-heart {
+    width: 25px;
+    height: 30px;
+    font-size: 25px;
+    color: #e54747;
+    margin-left: 20px;
+  }
+  /*アクションボタン-----------*/
+  .btn-gradation {
+    display: inline-block;
+    width: 180px;
+    text-align: center;
+    font-size: 15px;
+    color: #FFF;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 12px 24px;
+    border-radius: 10px;
+    background-image: linear-gradient(-90deg, #ff6200, #ffac47);
+    transition: .5s;
+    background-size: 200%;
+  }
+  .btn-gradation:hover {
+    background-position: right center;
+  }
+/**/
+header{
+	width: 100%;
+	background-color: white;
+  padding: 10px 0px;
+  color: #5d627b;
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.22);
+}
+/*----------------------*/
+.nav_txt{
+  color: #ff6a00;
+	font-size: 15px;
+}
+.nav_txt:hover{
+  color: #ff6a00 ;
+  border-radius: 10px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+}
+/*----------------------*/
+
+
+.wrapper{
+  margin-top: 120px;/*メインとかぶるから*/
+  height: 100%;
+  min-height: 100vh;
+  position: relative;/*←相対位置*/
+  padding-bottom: 120px;/*←footerの高さ*/
+  box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+}
+
+footer{
+  width: 100%;
+  background-color:black;
+  color: #fff;
+  text-align: center;
+  padding: 30px 0;
+
+  position: absolute;/*←絶対位置*/
+  bottom: 0; /*下に固定*/
+}
+
+.box{
+  padding: 0.5em 1em;
+  margin: 2em 0px;
+  color: #5d627b;
+  background: white;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+  border-radius: 10px;
+  border-top: solid 3px #e4e4e4;
+}
+
+.headline{
+  color: #ff00ff;//非対応のブラウザでの文字色を設定
+  background: -webkit-linear-gradient(0deg, #ffd11a	,#ff18ff);//背景色にグラデーションを指定
+  -webkit-background-clip: text;//テキストでくり抜く
+  -webkit-text-fill-color: transparent;//くり抜いた部分は背景を表示
+}
+
+
+.img{
+  border-radius: 10px;
+}
+/*-------???-----------*/
+.profile_img{
+  border-radius: 50%;
+}
+
+
+/*-----------------------------------------------*/
+.search input[type="text"]{
+  border: 1px solid #999;
+  padding: 3px 10px;
+  border-radius: 5px;
+  height: 2.2em;
+  overflow: hidden;
+}
+.search input[type="text"]:focus {
+  outline: 0;
+  height: 2.0em;
+}
+
+/*----*/
+.navbar-right{
+  margin-top: 20px;
+}
+
+  /*アクションボタン-----------*/
+  .search-btn-gradation {
+    display: inline-block;
+    width: 180px;
+    text-align: center;
+    font-size: 20px;
+    color: #FFF;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 10px;
+    background-image: linear-gradient(-90deg, #ff6200, #ffac47);
+    transition: .5s;
+    background-size: 200%;
+  }
+  .search-btn-gradation:hover {
+    background-position: right center;
+  }
+
+  .img-fit{
+    object-fit: cover;
+  }

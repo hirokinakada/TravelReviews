@@ -1,17 +1,48 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TravelReviews</title>
+    <title class="headline">TravelReviews</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+        <script src="https://kit.fontawesome.com/d9a424fd5b.js" crossorigin="anonymous">
+        </script>
   </head>
 
   <body>
     <%= render 'layouts/header' %>
-    <%= yield %>
-    <%= render 'layouts/footer' %>
+      <div class="wrapper">
+        <div class="body">
+          <div class="container">
+
+<!--検索-->
+<div class="row">
+  <div class="col-md-7"></div>
+    <div class="col-md-5">
+      <div class="row">
+
+      <div class="col-md-6 text-right">
+          <%= form_tag(search_path, :method => 'get' , class:"search") do %>
+          <%= text_field_tag :search %> 
+        </div>
+
+      <div class="col-md-6 text-left">
+          <%= button_tag :type => "submit", :class =>"search-btn-gradation" do %>
+            <i class="fa fa-search"></i>
+          <% end %>
+        <% end %>
+      </div>
+
+      </div>
+    </div>
+</div>
+<!-- , class: "box" , class:"btn-gradation" -->
+            <%= yield %>
+          </div>
+        </div>
+        <%= render 'layouts/footer' %>
+      </div>
   </body>
 </html>
