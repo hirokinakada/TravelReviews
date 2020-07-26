@@ -1,6 +1,9 @@
   <div class="row">
     <% tourists.each do |tourist| %>
       <div class="col-md-4">
+
+      <%= link_to(tourist_path(tourist), class: '') do %>
+
         <div class="box">
 
 
@@ -8,15 +11,14 @@
               fallback: "noimage.jpg" ,size:'335x237', class:'img') %>
               </div>
 
-
-        
-        <%= link_to tourist_path(tourist) do %>
         <h3>
           <%= tourist.name %>
           <i class="fas fa-arrow-right"></i>
         </h3>
-        <% end %>
+
         </div>
+
+      <% end %>
       </div>
     <% end %>
   </div>
