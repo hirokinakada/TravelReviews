@@ -4,12 +4,13 @@
         <div class="row box">
             <div class="col-md-6">
                 <h3> <%= @spot.name %> </h3>
-                <p><%= link_to '編集する', edit_admins_spot_path(@spot) %>
-                <%= link_to "削除する", admins_spot_path(@spot), method: :delete, "data-confirm" => 'Are you sure?' %>
-                </p>
 
                 <p>住所</br><%= @spot.address %></p>
                 <div>概要</br><%= @spot.overview %></div>
+
+                <p><%= link_to '[編集する]', edit_admins_spot_path(@spot),class:"text-success" %>
+                <%= link_to "[削除する]", admins_spot_path(@spot), method: :delete, "data-confirm" => 'Are you sure?' , class:"text-danger" %>
+                </p>
             </div>
 
             <div class="col-md-6">
@@ -73,10 +74,10 @@
         <% @reviews.each do |review| %>
             <div class="row box">
                 <h3> <%= review.title %> </h3>
-                <p><%= link_to "削除", admins_review_path(review.id), method: :delete %>
+                <p><%= link_to "[削除する]", admins_review_path(review.id), method: :delete ,class:"text-danger" %>
                 </p>
 
-                <p>投稿者</br><%= link_to review.customer.nickname, customer_path(review.customer_id) %></p>
+                <p>投稿者</br><%= link_to review.customer.nickname, customer_path(review.customer_id), :style=>"color:gray;" %></p>
                 <div class="word-date">内容</br><%= review.body %></div>
             <!--星評価-->
                 <div id="star-rate-<%= review.id %>"></div>

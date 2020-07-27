@@ -13,27 +13,30 @@
         </div>
 
         <div class="col-md-3">
-            <p><%= customer.nickname %></p>
+            </br><p style="font-size:20px;"><%= customer.nickname %></p>
 
             <% if customer_signed_in? && customer.id == current_customer.id %>
-                 <p><%= link_to  "情報変更", edit_customer_path(current_customer) ,class: "edit_btn" %></p>
+                 <p><%= link_to  "[情報変更]", edit_customer_path(current_customer) ,class: "text-success" %></p>
             <% end %>
         </div>
 
         <div class="col-md-3">
-            <span>フォロー数<%=link_to customer.follower.count, 
-            customer_relationships_follows_path(customer) %>人</span>
             </br>
-            <span>フォロワー数<%=link_to customer.followed.count,
-            customer_relationships_followers_path(customer) %>人</span>
+            <p style="font-size:17px;">フォロー <%=link_to customer.follower.count, 
+            customer_relationships_follows_path(customer), :style=>"color:gray;" %>人
+            
+            フォロワー <%=link_to customer.followed.count,
+            customer_relationships_followers_path(customer) , :style=>"color:gray;"%>人</p>
         </div>
 
 <div class="col-md-3">
     <% if customer_signed_in? && customer.id != current_customer.id %>
       <% if current_customer.following?(customer) %>
-		    <span><%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST %></span>
+            </br>
+		    <p style="font-size:15px;"><%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST ,class:"text-danger" %></p>
 	    <% else %>
-	    	<span><%= link_to 'フォローする', follow_path(customer.id), method: :POST %></span>
+            </br>
+	    	<p style="font-size:15px;"><%= link_to 'フォローする', follow_path(customer.id), method: :POST ,class:"text-success" %></p>
 	    <% end %>
     <% else %>
         <span></span>

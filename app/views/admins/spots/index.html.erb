@@ -39,6 +39,7 @@
 <div class="row">
     <% @spots.each do |spot| %>
       <div class="col-md-4">
+        <%= link_to(admins_spot_path(spot), class: '') do %>
         <div class="box">
 
 
@@ -48,10 +49,11 @@
 
 
         <h3 class="tourist_name">
-        <%= link_to spot.name, admins_spot_path(spot) %>
+        <%= spot.name %>
         </h3>
         
         </div>
+        <% end %>
       </div>
     <% end %>
 </div>
