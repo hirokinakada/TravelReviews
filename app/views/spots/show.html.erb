@@ -137,6 +137,10 @@
         </div>
     </div>
 
+    <% elsif admin_signed_in? %>
+        <%= render "admins/reviews/adminreviews", reviews: @spot.reviews %>
+
+
     <% else %>
         <div class="row">
             <div class="col-md-1"></div>
