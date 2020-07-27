@@ -4,6 +4,11 @@ lock "~> 3.14.1"
 set :application, "TravelReviews"
 set :repo_url, "git@github.com:hirokinakada/TravelReviews.git"
 
+set :deploy_to, "/home/ec2-user/TravelReviews"
+set :rbenv_ruby, '2.5.7'
+set :linked_files, %w{config/master.key .env}
+append :linked_dirs, "log", "public/system", "tmp"
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
@@ -38,7 +43,3 @@ set :repo_url, "git@github.com:hirokinakada/TravelReviews.git"
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
-set :deploy_to, "/home/ec2-user/TravelReviews"
-set :rbenv_ruby, '2.5.7'
-set :linked_files, %w{config/master.key .env}
-append :linked_dirs, "log", "public/system", "tmp"
