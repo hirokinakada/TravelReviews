@@ -17,7 +17,7 @@ class PostController < ApplicationController
     def destroy
         @post = Post.find(params[:id])
         @post.destroy
-        redirect_to topic_path(topic_id)
+        redirect_to topics_path
     end
 
 private

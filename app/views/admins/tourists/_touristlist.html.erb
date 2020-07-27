@@ -11,9 +11,9 @@
 
 
         <h3 class="tourist_name">
-        <%= link_to tourist.name, admins_tourist_path(tourist) %>
+        <%= link_to tourist.name, admins_tourist_path(tourist), :style=>"color:gray;" %>
         </h3>
-        <span><%= link_to '編集', edit_admins_tourist_path(tourist) %></span>
+        <span><%= link_to '編集', edit_admins_tourist_path(tourist) ,class:"text-success" %></span>
         </div>
       </div>
     <% end %>

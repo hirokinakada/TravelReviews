@@ -1,8 +1,8 @@
 class ReviewsController < ApplicationController
 
-    before_action :authenticate_customer!, only: [:create, :destroy, :edit, :update]
+    before_action :authenticate_customer!, only: [:create, :edit, :update]
 
-    before_action :correct_customer, only: [:edit, :update, :destroy]
+    before_action :correct_customer, only: [:edit, :update]
 
     def create
         @review = Review.new(review_params)
@@ -34,7 +34,7 @@ class ReviewsController < ApplicationController
         @review = Review.find(params[:id])
         @review.destroy
         redirect_to spot_path(@review.spot)
-	end
+    end
 
 
 

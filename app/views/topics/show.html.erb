@@ -8,16 +8,16 @@
 
   <% @posts.each_with_index do |post , idx| %>
     
-    <p>
-      <%= idx + 1 %>. <%= link_to post.customer.nickname, customer_path(post.customer_id)  %> : <%= post.body %>
+    <p style="font-size:20px;">
+      <%= idx + 1 %>. <%= link_to post.customer.nickname, customer_path(post.customer_id), :style=>"color:gray;"  %> : <%= post.body %>
     </p>
 
   <% if post.customer == current_customer %>
-    <%= link_to '[削除]', post_destroy_path(post), method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
+    <%= link_to '[削除]', post_destroy_path(post), method: :delete, data: {confirm: "削除してもよろしいですか？"}, class:"text-danger" %>
   <% end %>
 
   <% if admin_signed_in? %>
-    <%= link_to '[削除]', post_destroy_path(post), method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
+    <%= link_to '[削除]', post_destroy_path(post), method: :delete, data: {confirm: "削除してもよろしいですか？"}, class:"text-danger"  %>
   <% end %>
 
 <% end %>
@@ -27,7 +27,10 @@
   <div class="col-md-3">
     <div class="box">
       
-  <% if customer_signed_in? %>
+    <% if admin_signed_in? %>
+      <h1 class="text-center">管理者画面</h1>
+
+    <% elsif customer_signed_in? %>
     <%= form_with model: @post, :url => post_create_path, local: true do |f| %>
       <%= render 'layouts/errors', obj: @post %>
       <div class="text-center"><%= f.text_area :body %></div>
@@ -35,6 +38,10 @@
       <%= f.hidden_field :customer_id %>
       <div class="text-center"><%= f.submit "コメントする。", class:"btn-gradation" %></div>
     <% end %>
+
+    <% else %>
+      <p>新しいトピックを立てる、コメントをする場合は、<%= link_to 'ログイン', new_customer_session_path %>
+      もしくは、<%= link_to '新規登録', new_customer_registration_path %>が必要になります！！</p>
   <% end %>
 
 
