@@ -1,0 +1,30 @@
+ <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-6">
+        <% reviews.each do |review| %>
+            <div class="row box">
+                <h3> <%= review.title %> </h3>
+                <p><%= link_to "[削除する]", admins_review_path(review.id), method: :delete ,class:"text-danger" %>
+                </p>
+
+                <p>投稿者</br><%= link_to review.customer.nickname, customer_path(review.customer_id), :style=>"color:gray;" %></p>
+                <div class="word-date">内容</br><%= review.body %></div>
+            <!--星評価-->
+                <div id="star-rate-<%= review.id %>"></div>
+                <script>
+                    $('#star-rate-<%= review.id %>').raty({
+                    size: 36,
+                    starOff:  '<%= asset_path('star-off.png') %>',
+                    starOn :  '<%= asset_path('star-on.png') %>',
+                    starHalf: '<%= asset_path('star-half.png') %>',
+                    half: true,
+                    readOnly: true,
+                    score: <%= review.rate %>,
+                    });
+                </script>  
+            <!--/星評価-->
+            </div>
+ 
+            <% end %>
+        </div>
+    </div>
