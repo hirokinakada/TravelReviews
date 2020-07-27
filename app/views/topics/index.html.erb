@@ -4,21 +4,21 @@
   <div class="col-md-2"></div>
 
     <div class="col-md-7">
-<ul>
+<ol>
   <% @topics.each do |topic| %>
-    <li class="word-date"><%= link_to topic.title, topic_path(topic.id) %></br>
+    <li class="word-date" style="font-size:20px;"><%= link_to topic.title, topic_path(topic.id), :style=>"color:gray;" %></br>
 
 
     <% if topic.customer == current_customer %>
-      <%= link_to '[削除]', topic_path(topic.id), method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
+      <%= link_to '[削除]', topic_path(topic.id), method: :delete, data: {confirm: "削除してもよろしいですか？"}, class:"text-danger" %>
     <% end %>
 
     <% if admin_signed_in? %>
-      <%= link_to '[削除]', topic_path(topic.id), method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
+      <%= link_to '[削除]', topic_path(topic.id), method: :delete, data: {confirm: "削除してもよろしいですか？"}, class:"text-danger" %>
     <% end %>
     </li></br>
   <% end %>
-</ul>
+</ol>
 
     </div>
 
@@ -27,7 +27,7 @@
       
 
     <% if admin_signed_in? %>
-      <h1>管理者画面</h1>
+      <h1 class="text-center">管理者画面</h1>
 
     <% elsif customer_signed_in? %>
       <%= render 'layouts/errors', obj: @newtopic %>

@@ -11,20 +11,24 @@
         </div>
 
 		<div class="col-md-3">
-			<p><%= link_to customer.nickname, customer_path(customer.id) %></p>
+			</br>
+			<p style="font-size:20px;"><%= link_to customer.nickname, customer_path(customer.id), :style=>"color:gray;" %></p>
 		</div>
 
 		<div class="col-md-3">
-			<span><%= "フォロー数: #{customer.follower.count}" %></span>
-			<span><%= "フォロワー数: #{customer.followed.count}" %></span>
+			</br>
+			<p style="font-size:17px;"><%= "フォロー : #{customer.follower.count}" %>
+				<%= "フォロワー : #{customer.followed.count}" %></p>
 		</div>
 
 		<div class="col-md-3">
 			<% if customer_signed_in? %>
         	<% if current_customer.following?(customer) %>
-				<span><%= link_to 'フォローを外す', unfollow_path(customer.id), method: :POST %></span>
+				</br>
+				<p style="font-size:15px;"><%= link_to 'フォローを外す', unfollow_path(customer.id), method: :POST ,class:"text-danger" %></p>
 			<% else %>
-			    <span><%= link_to 'フォローをする', follow_path(customer.id), method: :POST %></span>
+				</br>
+			    <p style="font-size:15px;"><%= link_to 'フォローをする', follow_path(customer.id), method: :POST ,class:"text-success" %></p>
 			<% end %>
 
 			<% else %>

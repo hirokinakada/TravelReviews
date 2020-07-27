@@ -19,10 +19,10 @@
     </div>
 
     <div class="col-md-4">
-        <%= f.submit "変更" , class:"btn-gradation" %>
+        <%= f.submit "変更を確定する" , class:"btn-gradation" %>
     <% end %>
 
-    </br><%= link_to '[削除]', admins_tourist_path(@tourist.id), 
-    method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
+    </br></br><%= link_to '削除する', admins_tourist_path(@tourist.id), 
+    method: :delete, data: {confirm: "削除してもよろしいですか？"} , class:"btn-gradation" , :style=>"color:white;"%>
     </div>
 </div>

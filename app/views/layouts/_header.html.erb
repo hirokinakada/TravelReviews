@@ -12,8 +12,8 @@
 
         <% if admin_signed_in? %>
         <li><%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete , class: "nav_txt" %></li>
-        <li><%= link_to  "観光地域登録", admins_tourists_path , class: "nav_txt" %></li>
-        <li><%= link_to  "spot一覧登録", admins_spots_path , class: "nav_txt" %></li>
+        <li><%= link_to  "観光地域[登録]", admins_tourists_path , class: "nav_txt" %></li>
+        <li><%= link_to  "観光地一覧[登録]", admins_spots_path , class: "nav_txt" %></li>
         <li><%= link_to  '掲示板', topics_path , class: "nav_txt" %></li>
 
         <% elsif customer_signed_in? %>
@@ -22,13 +22,13 @@
 
         <li><%= link_to 'マイページ' , customer_path(current_customer.id), class: "nav_txt"  %></li>
 
-        <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete , class: "nav_txt" %></li>
-
         <li><%= link_to  'About', home_about_path , class: "nav_txt" %></li>
 
         <li><%= link_to  '掲示板', topics_path , class: "nav_txt" %></li>
 
-        <li><%= link_to  "エリア一覧", tourists_path , class: "nav_txt" %></li>
+        <li><%= link_to  "観光地域一覧", tourists_path , class: "nav_txt" %></li>
+
+        <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete , class: "nav_txt" %></li>
 
         <% else %>
 
@@ -38,9 +38,11 @@
 
         <li><%= link_to  'About', home_about_path , class: "nav_txt" %></li>
 
-        <li><%= link_to  "エリア一覧", tourists_path , class: "nav_txt" %></li>
+        <li><%= link_to  "観光地域一覧", tourists_path , class: "nav_txt" %></li>
 
         <li><%= link_to  '掲示板', topics_path , class: "nav_txt" %></li>
+
+        <li><%= link_to  "管理者ログイン", new_admin_session_path, class:"nav_txt" %></li>
         <% end %>
       </ul>
     </nav>

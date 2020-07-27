@@ -26,8 +26,11 @@
             <div><%= attachment_image_tag(spot, :image, :fill, 1000, 709, 
                 fallback: "noimage.jpg", size:'333x236', class:'img') %></div>
 
-            <h4><%= link_to spot.name, admins_spot_path(spot) %></h4>
+            <h4><%= link_to spot.name, admins_spot_path(spot), :style=>"color:gray;" %></h4>
             <p><%= spot.address %></p>
+            
+            <p><i class="far fa-comment">
+            </i><%= spot.reviews.all.count %>件</p>
             </div>
         </div>
     <% end %>
