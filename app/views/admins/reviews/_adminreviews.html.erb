@@ -3,6 +3,7 @@
         <div class="col-md-6">
         <% reviews.each do |review| %>
             <div class="row box">
+            <div class="col-md-6">
                 <h3> <%= review.title %> </h3>
                 <p><%= link_to "[削除する]", admins_review_path(review.id), method: :delete ,class:"text-danger" %>
                 </p>
@@ -24,7 +25,21 @@
                 </script>  
             <!--/星評価-->
             </div>
+
+                <% if review.image.present? %>
+                    <div class="col-md-6">
+                        <div><%= attachment_image_tag(review, :image, :fill, 1000, 709, 
+                        fallback: "noimage.jpg" ,size:'240x170', class:'img') %>
+                        </div>
+                    </div>
+
+                <% else %>
+
+                    <div class="col-md-6"></div>
+                <% end %>
+
+            </div>
  
-            <% end %>
+        <% end %>
         </div>
     </div>
