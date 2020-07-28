@@ -1,16 +1,16 @@
 
   <div class="row">
     <% tourists.each do |tourist| %>
-      <div class="col-md-4">
+      <div class="col-md-4 col-sm-6">
         <div class="box">
 
 
-        <div><%= attachment_image_tag(tourist, :image, :fill, 1000, 709, 
-              fallback: "noimage.jpg" ,size:'335x237', class:'img') %>
+        <div class="text-center"><%= attachment_image_tag(tourist, :image, :fill, 1000, 709, 
+              fallback: "noimage.jpg" ,size:'325x230', class:'img') %>
               </div>
 
 
-        <h3 class="tourist_name">
+        <h3>
         <%= link_to tourist.name, admins_tourist_path(tourist), :style=>"color:gray;" %>
         </h3>
         <span><%= link_to '編集', edit_admins_tourist_path(tourist) ,class:"text-success" %></span>

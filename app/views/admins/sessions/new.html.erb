@@ -2,14 +2,14 @@
 <div class="row box">
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-  <div class="col-md-3 text-center">
+  <div class="col-md-3 col-sm-6 text-center">
     <div class="field">
       <%= f.label :メールアドレス %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
   </div>
 
-  <div class="col-md-3 text-center">
+  <div class="col-md-3 col-sm-6 text-center">
     <div class="field">
       <%= f.label :パスワード %><br />
       <%= f.password_field :password, autocomplete: "current-password" %>
@@ -23,13 +23,13 @@
   <% end %>
   </div>
 
-  <div class="col-md-3 text-center">
+  <div class="col-md-3 col-sm-6 text-center">
    <div class="actions">
       </br><%= f.submit "Log in" , class:"btn-gradation"%>
     </div>
   <% end %>
   </div>
 
-  <div class="col-md-3 text-center">
+  <div class="col-md-3 col-sm-6 text-center">
     </br><%= render "admins/shared/links" %>
   </div>

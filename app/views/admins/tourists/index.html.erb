@@ -7,7 +7,7 @@
     <%= form_for (@tourist), url: admins_tourists_path do |f| %>
 
  
-    <div class="col-md-4">
+    <div class="col-md-4 col-sm-4">
         <%= f.label :name, "地名" %></br>
         <%= f.text_field :name %></br>
 
@@ -15,12 +15,12 @@
         <%= f.text_area :overview %>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4 col-sm-4">
         </br><%= f.label :image, "画像" %>
         <%= f.attachment_field :image %>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4 col-sm-4">
         </br><%= f.submit "エリア登録", class:"btn-gradation" %>
     <% end %>
     </div>
