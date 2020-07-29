@@ -1,15 +1,15 @@
 
 <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
+    <div class="col-md-1 col-lg-1"></div>
+    <div class="col-md-10 col-lg-10">
 
         <div class="row box">
-            <div class="col-md-5 col-sm-12">
+            <div class="col-md-12 col-lg-5">
                 <h3><%= @tourist.name %></h3>
                 <div><%= @tourist.overview %></div>
             </div>
 
-            <div class="col-md-7 col-sm-12">
+            <div class="col-md-12 col-lg-7">
                 <div class="text-center"><%= attachment_image_tag(@tourist, :image, :fill, 1000, 709, 
                 fallback: "noimage.jpg", size:'500x355', class:'img') %></div>
             </div>
@@ -19,8 +19,11 @@
 
 
 <div class="row">
+    <div class="col-lg-0 col-md-1 col-sm-0"></div>
+    <div class="col-lg-12 col-md-10 col-sm-12">
+    <div class="row">
     <% @spots.each do |spot| %>
-        <div class="col-md-4 col-sm-6">
+        <div class="col-md-6 col-sm-6 col-lg-4">
 
         <%= link_to(spot_path(spot), class: '') do %>
 
@@ -39,4 +42,6 @@
         <% end %>
         </div>
     <% end %>
+    </div>
+    </div>
 </div>

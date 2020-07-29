@@ -5,14 +5,14 @@
 <% end %>
 
 <div class="row box">
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-3">
             <div>
                 <%= attachment_image_tag(customer, :image, 
                 :fill, 1000, 709, fallback: "noimage.jpg", size:'80x80',class:'profile_img') %>
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-3">
             </br><p style="font-size:20px;"><%= customer.nickname %></p>
 
             <% if customer_signed_in? && customer.id == current_customer.id %>
@@ -20,16 +20,16 @@
             <% end %>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-3">
             </br>
-            <p style="font-size:17px;">フォロー <%=link_to customer.follower.count, 
-            customer_relationships_follows_path(customer), :style=>"color:gray;" %>人
+            <p class="text-center" style="font-size:17px;">フォロー　　<%=link_to customer.follower.count, 
+            customer_relationships_follows_path(customer), :style=>"color:gray;" %>人</br>
             
-            フォロワー <%=link_to customer.followed.count,
+            フォロワー　<%=link_to customer.followed.count,
             customer_relationships_followers_path(customer) , :style=>"color:gray;"%>人</p>
         </div>
 
-<div class="col-md-3">
+<div class="col-md-3 col-sm-3">
     <% if customer_signed_in? && customer.id != current_customer.id %>
       <% if current_customer.following?(customer) %>
             </br>

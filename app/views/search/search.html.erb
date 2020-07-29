@@ -2,18 +2,18 @@
 <h3>他のキーワードでお探しください。</h3>
 <% else %>
 <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
+    <div class="col-md-1 col-lg-1 col-sm-1"></div>
+    <div class="col-lg-10 col-md-10 col-sm-10">
       <% @spots.each do |spot| %>
         <%= link_to(spot_path(spot), class: '') do %>
         <div class="row box">
-            <div class="col-md-5">
+            <div class="col-lg-5 col-md-4 col-sm-12">
                 <h4><%= spot.name %></h4>
                 <p><%= spot.address %></p>
                 <div><%= spot.overview %></div>
             </div>
 
-            <div class="col-md-7">
+            <div class="col-lg-7 col-md-8 col-sm-12">
                 <div><%= attachment_image_tag(spot, :image, :fill, 1000, 709, 
                 fallback: "noimage.jpg", size:'500x355', class:'img') %></div>
             </div>

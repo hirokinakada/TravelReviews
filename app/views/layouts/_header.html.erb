@@ -26,7 +26,7 @@
 
         <li><%= link_to  '掲示板', topics_path , class: "nav_txt" %></li>
 
-        <li><%= link_to  "観光地域一覧", tourists_path , class: "nav_txt" %></li>
+        <li><%= link_to  "観光地 一覧", spots_path , class: "nav_txt" %></li>
 
         <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete , class: "nav_txt" %></li>
 
@@ -38,11 +38,10 @@
 
         <li><%= link_to  'About', home_about_path , class: "nav_txt" %></li>
 
-        <li><%= link_to  "観光地域一覧", tourists_path , class: "nav_txt" %></li>
+        <li><%= link_to  "観光地 一覧", spots_path , class: "nav_txt" %></li>
 
         <li><%= link_to  '掲示板', topics_path , class: "nav_txt" %></li>
 
-        <li><%= link_to  "管理者ログイン", new_admin_session_path, class:"nav_txt" %></li>
         <% end %>
       </ul>
     </nav>
