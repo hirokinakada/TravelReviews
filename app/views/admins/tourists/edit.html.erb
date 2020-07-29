@@ -5,7 +5,7 @@
 <div class="row box">
     <%= form_for (@tourist), url: admins_tourist_path do |f| %>
 
-    <div class="col-md-4">
+    <div class="col-md-4 col-sm-6">
         <%= f.label :name, "地名" %></br>
         <%= f.text_field :name %></br>
 
@@ -13,12 +13,12 @@
         <%= f.text_area :overview %></br>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4 col-sm-6">
         <%= f.label :image, "image" %>
         <%= f.attachment_field :image %></br>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4 col-sm-6">
         <%= f.submit "変更を確定する" , class:"btn-gradation" %>
     <% end %>
 

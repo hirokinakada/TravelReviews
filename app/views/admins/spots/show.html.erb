@@ -2,7 +2,7 @@
 <div class="row">
 
         <div class="row box">
-            <div class="col-md-6">
+            <div class="col-lg-6 col-md-5">
                 <h3> <%= @spot.name %> </h3>
 
                 <p>住所</br><%= @spot.address %></p>
@@ -13,7 +13,7 @@
                 </p>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-lg-6 col-md-5">
                 <div class="text-center"><%= attachment_image_tag(@spot, :image, 
                 :fill, 1000, 709, fallback: "noimage.jpg", 
                 size:'500x355', class:'img') %>

@@ -3,11 +3,11 @@
 <!--ここから口コミ一覧-->
 
     <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-6">
+        <div class="col-md-1 col-lg-1 col-sm-1"></div>
+        <div class="col-md-6 col-lg-6 col-sm-9">
           <% reviews.each do |review| %>
             <div class="row box">
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-5 col-sm-6">
 
                 <p><%= link_to review.spot.name, spot_path(review.spot), :style=>"color:gray;" %></p>
                 <h3><%= review.title %> </h3>
@@ -40,7 +40,7 @@
                 <% end %>
                 </div>
                     <% if review.image.present? %>
-                    <div class="col-md-6">
+                    <div class="col-lg-6 col-md-7 col-sm-6">
                         <div><%= attachment_image_tag(review, :image, :fill, 1000, 709, 
                         fallback: "noimage.jpg" ,size:'240x170', class:'img') %>
                         </div>
