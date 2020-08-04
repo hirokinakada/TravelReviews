@@ -75,7 +75,7 @@ header{
 }
 /*----------------------*/
 .nav_txt{
-  color: #014c86;
+  color: #89CFF0;
 	font-size: 15px;
 }
 .nav_txt:hover{
@@ -191,5 +191,13 @@ footer{
     header{
       padding:0px;
       margin:0px;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body,header,.box {
+      background-color: rgb(33, 33, 33);
+
+      border-top: solid 3px #353535;
     }
   }
