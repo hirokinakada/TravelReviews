@@ -178,7 +178,7 @@ footer{
 
   .details{
     color: gray;
-    margin-top: 30px;
+    margin: 30px;
   }
 
  
@@ -199,5 +199,9 @@ footer{
       background-color: rgb(33, 33, 33);
 
       border-top: solid 3px #353535;
+    }
+    .details{
+      color: rgb(252, 252, 252);
+      margin: 30px;
     }
   }
