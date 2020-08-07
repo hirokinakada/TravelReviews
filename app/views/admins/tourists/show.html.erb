@@ -4,16 +4,19 @@
     <div class="col-lg-1 col-md-1"></div>
     <div class="col-lg-10 col-md-10">
 
-        <div class="row box">
-            <div class="col-md-12 col-lg-5">
-                <h3><%= @tourist.name %></h3>
-                <div><%= @tourist.overview %></div>
-            </div>
+        <div class="row details">
 
             <div class="col-md-12 col-lg-7">
                 <div class="text-center"><%= attachment_image_tag(@tourist, :image, :fill, 1000, 709, 
                 fallback: "noimage.jpg", size:'500x355', class:'img') %></div>
             </div>
+
+            <div class="col-md-12 col-lg-5">
+                <h3 class="details"><%= @tourist.name %></h3>
+                <div class="details"><%= @tourist.overview %></div>
+            </div>
+
+
         </div>
     </div>
 </div>
