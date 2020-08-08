@@ -75,7 +75,7 @@ header{
 }
 /*----------------------*/
 .nav_txt{
-  color: #89CFF0;
+  color: #014c86;
 	font-size: 15px;
 }
 .nav_txt:hover{
@@ -179,6 +179,19 @@ footer{
   .details{
     color: gray;
     margin: 30px;
+  }
+
+  .pagination>li>a {          
+    border: none;     /*枠線をなくす*/
+    color: gray;  
+    font-size: 30px;
+  }
+  .pagination>.active>a {     
+    background: #014c86;
+    border-radius: 5px;
+  }
+  .pagination>li>a:hover {        
+    border-radius: 5px;  
   }
 
  
