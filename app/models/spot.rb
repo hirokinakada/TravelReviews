@@ -1,6 +1,7 @@
 class Spot < ApplicationRecord
     default_scope -> { order(created_at: :desc) }#投稿順に
     has_many :reviews, dependent: :destroy
+    has_many :likes, dependent: :destroy
     belongs_to :tourist
     attachment :image, destroy: false
 
@@ -13,7 +14,9 @@ class Spot < ApplicationRecord
     validates :address, presence: true
     validates :tourist_id, presence: true
     
-
+    def liked_by?(customer)
+      likes.where(customer_id: customer.id).exists?
+    end
 
 
     def Spot.search(search)

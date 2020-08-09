@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   get 'home/about'
   get "search" => "search#search"
   resources :tourists
-  resources :spots
+  resources :spots  do
+    resource :likes, only: [:create, :destroy]
+  end
   resources :reviews do
     resource :favorites, only: [:create, :destroy]
   end

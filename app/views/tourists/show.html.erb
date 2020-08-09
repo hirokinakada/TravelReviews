@@ -38,9 +38,10 @@
             <p><%= spot.address %></p>
 
             <p><i class="far fa-comment">
-            </i><%= spot.reviews.all.count %>件</p>
+            </i><%= spot.reviews.all.count %>件
+                <i class="far fa-heart">
+            </i><%= spot.likes.all.count %>件</p>
             </div>
-
         <% end %>
         </div>
     <% end %>

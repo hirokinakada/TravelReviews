@@ -9,6 +9,7 @@ class Customer < ApplicationRecord
         attachment :image, destroy: false
         has_many :reviews, dependent: :destroy
         has_many :favorites, dependent: :destroy
+        has_many :likes, dependent: :destroy
 
 #バリデーション
         validates :first_name,presence:true
