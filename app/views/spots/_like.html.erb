@@ -1,0 +1,17 @@
+
+<% if spot.liked_by?(current_customer) %>
+
+<%= link_to spot_likes_path(spot), method: :delete, remote: true do %>
+<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+<%= spot.likes.count %>
+<% end %>
+
+<% else %>
+
+<%= link_to spot_likes_path(spot), method: :post, remote: true do %>
+<span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+
+<%= spot.likes.count %>
+<% end %>
+
+<%end%>

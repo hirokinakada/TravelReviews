@@ -10,7 +10,15 @@
             </div>
             
             <div class="col-lg-6 col-md-5">
-                <h3> <%= @spot.name %> </h3>
+                <% if customer_signed_in? %>
+                    <h3> <%= @spot.name %>
+                        <span class="spot_<%= @spot.id %>">
+                        <%= render  "spots/like",spot:@spot , 
+                        customer:current_customer %></span></h3>
+                <% else %>
+                    <h3> <%= @spot.name %> </h3>
+                <% end %>
+
                 <p>住所</br><%= @spot.address %></p>
                 <div>概要</br><%= @spot.overview %></div>
             </div>
