@@ -7,6 +7,7 @@ class CustomersController < ApplicationController
     def show
         @customer = Customer.find(params[:id])
         @reviews = Review.where(customer_id: @customer.id)
+        @spots = @customer.like_spots #likeしたものだけ取得
     end
 
     def edit

@@ -10,6 +10,7 @@ class Customer < ApplicationRecord
         has_many :reviews, dependent: :destroy
         has_many :favorites, dependent: :destroy
         has_many :likes, dependent: :destroy
+        has_many :like_spots, through: :likes, source: :spot#likeしたspotsを取得
 
 #バリデーション
         validates :first_name,presence:true
